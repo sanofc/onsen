@@ -1,19 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#ifdef __APPLE__
-#include <GLUT/glut.h>
-#else
-#include <GL/glut.h>
-#endif
-
-#define IX(i,j) ((i)+(N+2)*(j))
-#define GRID_SIZE (N+2)*(N*2)
-#define VEL_SIZE (N+3)*(N*2)
-
-typedef struct _vec{
-	double x;
-	double y;
-} vec;
+#include "steam.h"
 
 static int win_x,win_y;
 static int mouse_x,mouse_x_prev;
@@ -22,13 +9,16 @@ static int mouse_down;
 static int N;
 
 static vec * force;
-static double * u, * v;
+static double * u, * v, * u_prev, * v_prev;
+static double dt;
 
 int allocate_data(void){
 
 	force = (vec *)malloc(GRID_SIZE * sizeof(vec));
 	u = (double *)malloc(VEL_SIZE * sizeof(double));
 	v = (double *)malloc(VEL_SIZE * sizeof(double));
+	u_prev = (double *)malloc(VEL_SIZE * sizeof(double));
+	v_prev = (double *)malloc(VEL_SIZE * sizeof(double));
 
 	if(!force | !u | !v){
 		fprintf(stderr, "cannnot allocate data\n");
@@ -37,15 +27,21 @@ int allocate_data(void){
 	return 1;
 }
 
-void init_data(void){
-
+void init_force(void){
 	for(int i=0; i<GRID_SIZE; i++){
 		force[i].x = force[i].y = 0.0;
 	}
+}
 
+void init_velocity(void){
 	for(int i=0; i<VEL_SIZE; i++){
-		u[i] = v[i] = 0.01;
+		u[i] = v[i] = u_prev[i] = v_prev[i] = 0.0;
 	}
+}
+
+void init_data(void){
+	init_force();
+	init_velocity();
 }
 
 void free_data(void){
@@ -66,7 +62,7 @@ void draw_velocity(void){
 		for(int j=0; j < N + 2; j++){
 			y = (j+0.5) * h;
 			glVertex2d(x,y);
-			glVertex2d(x + u[i+j*(N+3)], y + u[i+j*(N+3)]);
+			glVertex2d(x + u[IU(i,j)], y);
 		}
 	}
 	for(int i=0; i < N + 2; i++){
@@ -74,7 +70,7 @@ void draw_velocity(void){
 		for(int j=0; j < N + 3; j++){
 			y = j * h;
 			glVertex2d(x,y);
-			glVertex2d(x + u[i+j*(N+2)], y + u[i+j*(N+2)]);
+			glVertex2d(x, y + v[IV(i,j)]);
 		}
 	}
 	glEnd();
@@ -92,7 +88,7 @@ void draw_force(void){
 		for(int j = 0; j < N + 2; j++){
 			y = (j + 0.5) * h;
 			glVertex2d(x,y);
-			glVertex2d(x + force[IX(i,j)].x, y + force[IX(i,j)].y);
+			glVertex2d(x + force[IX(i,j)].x * dt, y + force[IX(i,j)].y * dt);
 		}
 	}
 	glEnd();
@@ -113,24 +109,6 @@ void draw_grid(void){
 }
 
 
-void draw_mouse_down(void){
-	if(mouse_down){
-		glColor3d(1.0,0.0,0.0);
-		glPointSize(10);
-		glBegin(GL_POINTS);
-		printf("%d %d\n",mouse_x_prev,mouse_x);
-		fflush(stdout);
-		force->x = mouse_x - mouse_x_prev;
-		force->y = mouse_y_prev - mouse_y;
-		glVertex2d((double)mouse_x/win_x,(double)(win_y-mouse_y)/win_y);
-		glEnd();
-	}
-	mouse_x_prev = mouse_x;
-	mouse_y_prev = mouse_y;
-}
-
-
-
 void display(void){
 
 	glViewport(0,0,win_x,win_y);
@@ -141,7 +119,6 @@ void display(void){
 	draw_grid();
 	draw_force();
 	draw_velocity();
-	draw_mouse_down();
 	glFlush();
 }
 
@@ -165,7 +142,29 @@ void motion(int x, int y){
 	mouse_y = y;
 }
 
+void get_from_UI(void){
+	int i,j;
+
+	init_force();
+
+	if(mouse_down){
+		printf("%d %d\n",mouse_x_prev,mouse_x);
+		fflush(stdout);
+		i = (int)((mouse_x / (float)win_x) * (N + 2));
+		j = (int)(((win_y - mouse_y)/(float)win_y) * (N+2));
+
+		if(i == 0 || i == N+1 || j ==0 || j == N+1) return;
+
+		force[IX(i,j)].x = mouse_x - mouse_x_prev;
+		force[IX(i,j)].y = mouse_y_prev - mouse_y;
+	}
+	mouse_x_prev = mouse_x;
+	mouse_y_prev = mouse_y;
+}
+
 void idle(void){
+	get_from_UI();
+	vel_step(N,dt,u,v,u_prev,v_prev,force);
 	glutPostRedisplay();
 }
 
@@ -176,6 +175,7 @@ int main( int argc, char ** argv )
 	win_x=512;
 	win_y=512;
 	N=10;
+	dt = 0.01;
 
 	glutInitDisplayMode(GLUT_RGBA);
 	glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH)-win_x,0);

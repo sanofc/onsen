@@ -1,6 +1,6 @@
 build: view.c
-	clang -o view view.c -framework GLUT -framework OpenGL -Wno-deprecated
+	clang -o steam view.c solver.c -framework GLUT -framework OpenGL -Wno-deprecated
 run:
-	./view
+	./steam
 clean:
 	rm -f view
