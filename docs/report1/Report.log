@@ -1,0 +1,237 @@
+This is e-upTeX, Version 3.14159265-p3.6-u1.20-141210-2.6 (utf8.uptex) (TeX Live 2015) (preloaded format=uplatex 2015.6.13)  11 AUG 2015 07:33
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Report.tex
+(./Report.tex
+pLaTeX2e <2011/05/07u00>+0 (based on LaTeX2e <2015/01/01> patch level 0)
+Babel <3.9l> and hyphenation patterns for 79 languages loaded.
+(/usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujarticle.cls
+Document Class: ujarticle 2011/05/07 v1.6_u00 Standard upLaTeX class
+\c@@paper=\count81
+(/usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujsize10.clo
+File: ujsize10.clo 2011/05/07 v1.6_u00 Standard upLaTeX file (size option)
+LaTeX Font Info:    Font shape `JT2/mc/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 51.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 51.
+)
+\c@part=\count82
+\c@section=\count83
+\c@subsection=\count84
+\c@subsubsection=\count85
+\c@paragraph=\count86
+\c@subparagraph=\count87
+\c@figure=\count88
+\c@table=\count89
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\symmincho=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `mincho' in version `bold'
+(Font)                  JY2/mc/m/n --> JY2/gt/m/n on input line 601.
+\toclineskip=\dimen118
+\@lnumwidth=\dimen119
+\bibindent=\dimen120
+\heisei=\count90
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2014/10/28 v1.0g Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks15
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2014/10/28 v1.0p Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
+File: graphics.cfg 2010/04/23 v1.9 graphics configuration of TeX Live
+)
+Package graphics Info: Driver file: dvipdfmx.def on input line 94.
+
+(/usr/local/texlive/2015/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
+File: dvipdfmx.def 2015/03/26 v4.04 LaTeX color/graphics driver for dvipdfmx (T
+eX Live/ChoF)
+))
+\Gin@req@height=\dimen121
+\Gin@req@width=\dimen122
+)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2010/03/01 v1.5 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+)
+(/usr/local/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count91
+\Gm@cntv=\count92
+\c@Gm@tempcnt=\count93
+\Gm@bindingoffset=\dimen123
+\Gm@wd@mp=\dimen124
+\Gm@odd@mp=\dimen125
+\Gm@even@mp=\dimen126
+\Gm@layoutwidth=\dimen127
+\Gm@layoutheight=\dimen128
+\Gm@layouthoffset=\dimen129
+\Gm@layoutvoffset=\dimen130
+\Gm@dimlist=\toks16
+)
+(./Report.aux
+
+LaTeX Warning: Label `temperature' multiply defined.
+
+)
+\openout1 = `Report.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for JY2/mc/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+LaTeX Font Info:    Checking defaults for JT2/mc/m/n on input line 5.
+LaTeX Font Info:    ... okay on input line 5.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: dvips
+*geometry* verbose mode - [ preamble ] result:
+* driver: dvips
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(85.35826pt, 426.79135pt, 85.35826pt)
+* v-part:(T,H,B)=(85.35826pt, 674.33032pt, 85.35826pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=426.79135pt
+* \textheight=674.33032pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=13.08827pt
+* \topmargin=-23.91173pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=8.46753pt
+* \footskip=30.0pt
+* \marginparwidth=106.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+LaTeX Font Info:    Font shape `JT2/mc/m/n' will be
+(Font)              scaled to size 16.62714pt on input line 9.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 16.62714pt on input line 9.
+LaTeX Font Info:    Font shape `JT2/mc/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 9.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 9.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 7.69775pt on input line 9.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 5.77332pt on input line 9.
+LaTeX Font Info:    Font shape `JT2/mc/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 11.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 11.
+LaTeX Font Info:    Font shape `JT2/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT2/gt/m/n' tried instead on input line 11.
+LaTeX Font Info:    Font shape `JT2/gt/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 11.
+LaTeX Font Info:    Font shape `JY2/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY2/gt/m/n' tried instead on input line 11.
+LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
+(Font)              scaled to size 13.85594pt on input line 11.
+(./Plan.tex
+LaTeX Font Info:    Font shape `JT2/mc/bx/n' in size <12> not available
+(Font)              Font shape `JT2/gt/m/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `JT2/gt/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 2.
+LaTeX Font Info:    Font shape `JY2/mc/bx/n' in size <12> not available
+(Font)              Font shape `JY2/gt/m/n' tried instead on input line 2.
+LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
+(Font)              scaled to size 11.54663pt on input line 2.
+ [1
+
+] [2]) (./Smoke.tex [3]
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 13.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 13.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 6.73553pt on input line 13.
+LaTeX Font Info:    Font shape `JY2/mc/m/n' will be
+(Font)              scaled to size 4.8111pt on input line 13.
+ [4]
+File: grid.png Graphic file (type bmp)
+ <grid.png>
+File: overview.png Graphic file (type bmp)
+ <overview.png> [5])
+(./Report.bbl
+LaTeX Font Info:    Font shape `JT2/gt/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 7.
+LaTeX Font Info:    Font shape `JY2/gt/m/n' will be
+(Font)              scaled to size 9.6222pt on input line 7.
+
+
+LaTeX Font Warning: Font shape `JT2/gt/m/it' undefined
+(Font)              using `JT2/gt/m/n' instead on input line 7.
+
+
+LaTeX Font Warning: Font shape `JY2/gt/m/it' undefined
+(Font)              using `JY2/gt/m/n' instead on input line 7.
+
+LaTeX Font Info:    Font shape `JT2/gt/m/it' will be
+(Font)              scaled to size 9.6222pt on input line 12.
+LaTeX Font Info:    Font shape `JY2/gt/m/it' will be
+(Font)              scaled to size 9.6222pt on input line 12.
+[6]) [7] (./Report.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 1179 strings out of 493769
+ 15603 string characters out of 6151300
+ 84341 words of memory out of 5000000
+ 4699 multiletter control sequences out of 15000+600000
+ 11421 words of font info for 53 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 25i,6n,32p,1218b,311s stack positions out of 5000i,500n,10000p,200000b,80000s
+
+Output written on Report.dvi (7 pages, 32064 bytes).

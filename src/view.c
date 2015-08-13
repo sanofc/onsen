@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include <stdio.h>
+
 #include "steam.h"
 
 static int win_x,win_y;
@@ -31,6 +30,7 @@ void init_force(void){
 	for(int i=0; i<GRID_SIZE; i++){
 		force[i].x = force[i].y = 0.0;
 	}
+	force[IX(5,5)].x = 1.5;
 }
 
 void init_velocity(void){
@@ -48,6 +48,8 @@ void free_data(void){
 	if(force) free(force);
 	if(u) free(u);
 	if(v) free(v);
+	if(u_prev) free(u_prev);
+	if(v_prev) free(v_prev);
 }
 
 void draw_velocity(void){
@@ -73,6 +75,33 @@ void draw_velocity(void){
 			glVertex2d(x, y + v[IV(i,j)]);
 		}
 	}
+	//draw backtrace
+	for(int i=0; i < N + 3; i++){
+		x = i * h;
+		for(int j=0; j < N + 2 ; j++){
+			y = (j+0.5) * h;
+
+ 			double x0 =  x - u_prev[IU(i,j)] * dt;
+			double cv = (v_prev[IV(i-1,j)] + v_prev[IV(i,j)] + v_prev[IV(i-1,j+1)] + v_prev[IV(i,j+1)]) * 0.25;
+			double y0 = y - cv * dt;
+			glColor3d(1.0,0.0,0.0);
+			glVertex2d(x,y);
+			glVertex2d(x0, y0);	
+		}
+	}
+	for(int i=0; i < N + 2; i++){
+		x = (i+0.5) * h;
+		for(int j=0; j < N + 3; j++){
+			y = j * h;
+ 			double y0 =  y - v_prev[IV(i,j)] * dt;
+			double cu = (u_prev[IU(i,j)] + u_prev[IU(i,j-1)] + u_prev[IU(i+1,j-1)] + u_prev[IU(i+1,j)]) * 0.25;
+			double x0 = x - cu * dt;
+			glColor3d(1.0,0.0,0.0);
+			glVertex2d(x,y);
+			glVertex2d(x0, y0);	
+		}
+	}
+
 	glEnd();
 }
 
@@ -119,6 +148,7 @@ void display(void){
 	draw_grid();
 	draw_force();
 	draw_velocity();
+
 	glFlush();
 }
 
@@ -145,10 +175,9 @@ void motion(int x, int y){
 void get_from_UI(void){
 	int i,j;
 
-	init_force();
 
 	if(mouse_down){
-		printf("%d %d\n",mouse_x_prev,mouse_x);
+		//printf("%d %d\n",mouse_x_prev,mouse_x);
 		fflush(stdout);
 		i = (int)((mouse_x / (float)win_x) * (N + 2));
 		j = (int)(((win_y - mouse_y)/(float)win_y) * (N+2));
@@ -164,8 +193,11 @@ void get_from_UI(void){
 
 void idle(void){
 	get_from_UI();
+	//sleep(1);
+	SWAP(u,u_prev);SWAP(v,v_prev);
 	vel_step(N,dt,u,v,u_prev,v_prev,force);
 	glutPostRedisplay();
+
 }
 
 int main( int argc, char ** argv )
@@ -174,8 +206,8 @@ int main( int argc, char ** argv )
 
 	win_x=512;
 	win_y=512;
-	N=10;
-	dt = 0.01;
+	N=20;
+	dt = 0.1;
 
 	glutInitDisplayMode(GLUT_RGBA);
 	glutInitWindowPosition(glutGet(GLUT_SCREEN_WIDTH)-win_x,0);

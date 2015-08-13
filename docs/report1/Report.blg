@@ -1,0 +1,60 @@
+This is upBibTeX, Version 0.99d-j0.33-u1.20 (utf8.uptex) (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Report.aux
+The style file: jplain.bst
+Database file #1: ref.bib.bib
+Repeated entry---line 196 of file ref.bib.bib
+ : @article{Mizuno2003
+ :                    ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 208 of file ref.bib.bib
+ : @article{Nielsen2013
+ :                     ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in Ishikawa
+Warning--empty year in Ishikawa
+Warning--empty journal in Miyazaki2002
+Warning--there's a number but no volume in Mizuno2003
+You've used 20 entries,
+            2620 wiz_defined-function locations,
+            719 strings with 7693 characters,
+and the built_in function-call counts, 8431 in all, are:
+= -- 730
+> -- 320
+< -- 32
++ -- 132
+- -- 112
+* -- 490
+:= -- 1173
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 116
+chr.to.int$ -- 0
+cite$ -- 24
+duplicate$ -- 446
+empty$ -- 663
+format.name$ -- 168
+if$ -- 1923
+int.to.chr$ -- 0
+int.to.str$ -- 20
+missing$ -- 19
+newline$ -- 101
+num.names$ -- 40
+pop$ -- 170
+preamble$ -- 1
+purify$ -- 96
+quote$ -- 0
+skip$ -- 428
+stack$ -- 0
+substring$ -- 364
+swap$ -- 130
+text.length$ -- 32
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 80
+warning$ -- 4
+while$ -- 71
+width$ -- 22
+write$ -- 213
+is.kanji.str$ -- 231
+(There were 2 error messages)

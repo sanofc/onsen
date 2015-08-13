@@ -1,3 +1,6 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
 #ifdef __APPLE__
 #include <GLUT/glut.h>
 #else
@@ -9,7 +12,7 @@
 #define IU(i,j) ((i)+(N+3)*(j))
 #define GRID_SIZE (N+2)*(N*2)
 #define VEL_SIZE (N+3)*(N*2)
-
+#define SWAP(x0,x) {double * tmp=x0;x0=x;x=tmp;}
 typedef struct _vec{
 	double x;
 	double y;

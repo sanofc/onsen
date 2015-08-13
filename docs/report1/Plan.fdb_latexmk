@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1439198756 "Plan.dvi" "Plan.pdf" "Plan" 1439198756
+  "Plan.dvi" 1439198755 6460 c020ddd8560445e921c115689561b637 "latex"
+  (generated)
+  "Plan.pdf"
+["latex"] 1439198755 "Plan.tex" "Plan.dvi" "Plan" 1439198756
+  "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf" 1428852030 31983 18aeec08f48baa3cf3508d538dd5f459 ""
+  "/usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt" 1434177937 3996148 e442bf765e1b43e29527f5dacfd0ef32 ""
+  "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
+  "Plan.aux" 1439198755 8 a94a2480d3289e625eea47cd1b285758 ""
+  "Plan.tex" 1439198745 4780 583c72d25c239a80c118b802b1a7decf ""
+  (generated)
+  "Plan.dvi"
+  "Plan.log"
