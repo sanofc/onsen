@@ -1,6 +1,6 @@
-build: view.c
-	clang -o steam view.c solver.c -framework GLUT -framework OpenGL -Wno-deprecated
+build: 
+	clang -o fluid2d fluid2d.c -framework GLUT -framework OpenGL -Wno-deprecated
 run:
-	./steam
+	./fluid2d
 clean:
-	rm -f view
+	rm -f fluid2d 
