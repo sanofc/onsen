@@ -9,6 +9,8 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujarticle.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujarticle.cls
 INPUT /usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujsize10.clo
 INPUT /usr/local/texlive/2015/texmf-dist/tex/uplatex/base/ujsize10.clo
+INPUT Begin.tex
+INPUT Begin.tex
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
@@ -21,6 +23,10 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/latexconfig/graphics.cfg
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def
+INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/geometry/geometry.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ifpdf.sty
@@ -47,6 +53,8 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
+INPUT Intro.tex
+INPUT Intro.tex
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-v.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
@@ -63,6 +71,12 @@ INPUT grid.png
 INPUT extractbb -O grid.png
 INPUT overview.png
 INPUT extractbb -O overview.png
+INPUT Steam.tex
+INPUT Steam.tex
+INPUT simulation.png
+INPUT extractbb -O simulation.png
+INPUT End.tex
+INPUT End.tex
 INPUT Report.bbl
 INPUT Report.bbl
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
