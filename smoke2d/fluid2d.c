@@ -79,14 +79,6 @@ void final(){
 	
 }
 
-double g_ref(double **g, int i, int j){ 
-	double ref;
-	if(g==p)		ref = p[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
-	else if(g==u)	ref = u[CLIP(i,0,X)][CLIP(j,0,Y-1)];
-	else if(g==v)	ref = v[CLIP(i,0,X-1)][CLIP(j,0,Y)];
-	return ref;
-}
-
 void add_force(int x, int y, double fx, double fy){
 	f[0][x][y] += fx;
 	f[1][x][y] += fy;
@@ -113,12 +105,31 @@ double ** get_v(){
 }
 
 
+double g_ref(double **g, int i, int j){ 
+	double ref;
+	if(g==p)		ref = p[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
+	else if(g==u)	ref = u[CLIP(i,0,X)][CLIP(j,0,Y-1)];
+	else if(g==v)	ref = v[CLIP(i,0,X-1)][CLIP(j,0,Y)];
+	return ref;
+}
+
 void enforce_boundary(){
+/*
 	START_FOR_X
 		if(i==0 || i==X) u[i][j] = 0;
 	END_FOR
 	START_FOR_Y
 		if(j==0 || j==Y) v[i][j] = 0;
+	END_FOR
+*/
+	//Outflow boundary condition
+	START_FOR_X
+		if(i==0) u[i][j] = 0.1;
+		if(i==X) u[i][j] = -0.1;
+	END_FOR
+	START_FOR_Y
+		if(j==0) v[i][j] = 0;
+		if(j==Y) v[i][j] = 0.1; 
 	END_FOR
 }
 
@@ -227,6 +238,7 @@ void compute_diffuse(){
 		qs_swap[i][j] = g_ref(qs,i,j) + a * (g_ref(qs,i-1,j) + g_ref(qs,i+1,j) + g_ref(qs,i,j-1) + g_ref(qs,i,j+1) - 4 * g_ref(qs,i,j));
 	END_FOR
 
+
 	SWAP(u,u_swap);
 	SWAP(v,v_swap);
 	SWAP(qs,qs_swap);
@@ -239,13 +251,23 @@ void compute_divergence(){
 	END_FOR
 }
 
-void compute_pressure(){
+void gausseidel(double **x, double **b){
 	double h2 = H * H;
 	for(int k=0; k < T; k++){
 		START_FOR_C
-			p[i][j] = ((g_ref(p,i+1,j)+g_ref(p,i-1,j)+g_ref(p,i,j+1)+g_ref(p,i, j-1))-h2*d[i][j])/4;
+			x[i][j] = ((g_ref(x,i+1,j)+g_ref(x,i-1,j)+g_ref(x,i,j+1)+g_ref(x,i, j-1))-h2*b[i][j])/4;
 		END_FOR
 	}
+}
+
+//pressure *x
+//divergence *b
+void solve(double **x, double **b){
+	gausseidel(x,b);
+}
+
+void compute_pressure(){
+	solve(p,d);
 }
 
 void subtract_pressure(){
@@ -268,7 +290,7 @@ void initPostDisplay(){
 void compute_step(){
 	scene();
 	enforce_boundary();
-	vorticity_confinement();
+	//vorticity_confinement();
 	compute_force();
 	compute_advection();
 	//compute_diffuse();
