@@ -13,6 +13,16 @@ INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/moreverb/moreverb.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/moreverb/moreverb.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/verbatim.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/tools/verbatim.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty
 INPUT /usr/local/texlive/2015/texmf-dist/tex/latex/graphics/keyval.sty
@@ -45,6 +55,9 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-v.tfm
@@ -53,9 +66,12 @@ INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr12.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisg-v.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisg-h.tfm
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 OUTPUT Heat.dvi
 INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
-INPUT heat_3.py
+INPUT heat_gs.py
 INPUT heat.png
 INPUT extractbb -O heat.png
+INPUT heat_gs_p.py
 INPUT Heat.aux

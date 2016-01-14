@@ -98,7 +98,7 @@ int PERIOD(int src, int min, int max){
 
 double g_ref(double **g, int i, int j){ 
 	double ref;
-	if(g==p || g==t) ref = g[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
+	if(g==p || g==t || g==t_swap || g==qv || g==qv_swap) ref = g[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
 	else if(g==u)	 ref = g[CLIP(i,0,X)][CLIP(j,0,Y-1)];
 	else if(g==v)    ref = g[CLIP(i,0,X-1)][CLIP(j,0,Y)];
 	return ref;
@@ -150,7 +150,11 @@ void enforce_boundary(){
 	END_FOR
 	START_FOR_Y
 		if(j==0) v[i][j] = 0.0;
-		if(j==Y) v[i][j] = 0.01; 
+		if(j==Y) v[i][j] = 0.01;
+	END_FOR
+
+	START_FOR_C
+		if(j==Y) qv[i][j] = 0.0;
 	END_FOR
 }
 
@@ -257,11 +261,11 @@ void gausseidel(double **x, double **b){
 	}
 }
 
-void lin_solve ( double ** x, double ** x0, double a, double b, double c )
+void lin_solve ( double ** x, double ** x0, double a, double c )
 {
 	for (int k=0 ; k<T ; k++ ) {
 		START_FOR_C
-			x[i][j]= (a*(g_ref(x,i-1,j)+g_ref(x,i+1,j)+g_ref(x,i,j-1)+g_ref(x,i,j+1))- b * x0[i][j] )/c;
+			x[i][j]= (x0[i][j] + a*(g_ref(x,i-1,j)+g_ref(x,i+1,j)+g_ref(x,i,j-1)+g_ref(x,i,j+1)))/c;
 		END_FOR
 	}
 }
@@ -277,33 +281,38 @@ void compute_diffuse(){
 	START_FOR_Y
 		v_swap[i][j] = g_ref(v,i,j) + a * (g_ref(v,i-1,j) + g_ref(v,i+1,j) + g_ref(v,i,j-1) + g_ref(v,i,j+1) - 4 * g_ref(v,i,j));
 	END_FOR
+*/
+	double Dv = DT * 0.005;
+	double Dt = DT * 0.001;
 
+	//explicit method
+
+	/*
 	START_FOR_C
-		qs_swap[i][j] = g_ref(qs,i,j) + a * (g_ref(qs,i-1,j) + g_ref(qs,i+1,j) + g_ref(qs,i,j-1) + g_ref(qs,i,j+1) - 4 * g_ref(qs,i,j));
+		qv_swap[i][j] = g_ref(qv,i,j) + Dv * (g_ref(qv,i-1,j) + g_ref(qv,i+1,j) + g_ref(qv,i,j-1) + g_ref(qv,i,j+1) - 4 * g_ref(qv,i,j));
 	END_FOR
-	*/
-
-	//thermal conductivity
-	double a = DT * 0.05;
-
 	START_FOR_C
 		//printf("%f %f\n", g_ref(t,i,j),t_swap[i][j]);
-		t_swap[i][j] = g_ref(t,i,j) + a * (g_ref(t,i-1,j) + g_ref(t,i+1,j) + g_ref(t,i,j-1) + g_ref(t,i,j+1) - 4 * g_ref(t,i,j));
+		t_swap[i][j] = g_ref(t,i,j) + Dt * (g_ref(t,i-1,j) + g_ref(t,i+1,j) + g_ref(t,i,j-1) + g_ref(t,i,j+1) - 4 * g_ref(t,i,j));
 	END_FOR
-	//SWAP(v,v_swap);
-	//SWAP(qs,qs_swap);
-	/*
-	double a = DT*0.5*N*N;
-	double b = 1;
-	double c = 1+4 * a;
-	lin_solve(t_swap,t,a,b,c);
 	*/
-	SWAP(t,t_swap);
+
+
+	// implicit method
+	double a;
+	//a = Dt * N * N;
+	//lin_solve(t_swap,t,a,1.0+4.0 * a);
+	a = Dv * N * N;
+	lin_solve(qv_swap,qv,a,1.0+4.0*a);
+
+
+	SWAP(qv,qv_swap);
+	//SWAP(t,t_swap);
 }
 
 void compute_divergence(){
 	START_FOR_C
-		d[i][j] = ((u[i+1][j]-u[i][j])+(v[i][j+1]-v[i][j]))/H;
+		d[i][j] = -1.0*((u[i+1][j]-u[i][j])+(v[i][j+1]-v[i][j]))/(double)N;
 	END_FOR
 }
 
@@ -314,7 +323,7 @@ void solve(double **x, double **b){
 }
 
 void compute_pressure(){
-	lin_solve(p,d,1,H*H,4);
+	lin_solve(p,d,1,4);
 }
 
 void subtract_pressure(){

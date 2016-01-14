@@ -11,6 +11,8 @@
 
 #include <stdio.h>
 #include "fluid2d.h"
+#include "perlin.h"
+
 
 void scene();
 

@@ -104,7 +104,7 @@ void displayDensity(double **s, double max){
 }
 
 void displaySteam(){
-	displayDensity(get_steam(),0.5);
+	displayDensity(get_steam(),1.0);
 }
 
 void displayVapor(){

@@ -1,11 +1,14 @@
 # Fdb version 3
-["dvipdf"] 1450565712 "Heat.dvi" "Heat.pdf" "Heat" 1450565713
-  "Heat.dvi" 1450565712 7576 0edbefaf687b3cb55b289175d83883ce "latex"
+["dvipdf"] 1451498751 "Heat.dvi" "Heat.pdf" "Heat" 1451498752
+  "Heat.dvi" 1451498751 13708 8eeb9b67073a710bdb1349afe1fe09f0 "latex"
   (generated)
   "Heat.pdf"
-["latex"] 1450565712 "Heat.tex" "Heat.dvi" "Heat" 1450565713
+["latex"] 1451498750 "Heat.tex" "Heat.dvi" "Heat" 1451498752
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
+  "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm" 1136768653 1324 c910af8c371558dc20f2d7822f66fe64 ""
+  "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1136768653 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi12.tfm" 1136768653 1524 4414a8315f39513458b80dfc63bff03a ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm" 1136768653 1512 f21f83efb36853c0b70002322c1ab3ad ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm" 1136768653 1520 eccf95517727cb11801f4f1aee3a21b4 ""
@@ -23,6 +26,11 @@
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-v.tfm" 1336914105 504 db18a8c0bf0b51f5d6237cc98872380d ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/infwarerr.sty" 1335995445 8253 3bdedc8409aa5d290a2339be6f09af03 ""
   "/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/ltxcmds.sty" 1335995445 18425 775b341047ce304520cc7c11ca41392e ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty" 1362954379 2412 2d98314dc5be38f455f8890deeb2d091 ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty" 1362954379 4357 ad30ad08920902fc9b38caf35a3b0496 ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty" 1362954379 79178 b2e326c351e876df0e5e23df2e02441b ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty" 1362954379 4082 502152465aedb8f6a3c4b0b7c0fa8ae5 ""
+  "/usr/local/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty" 1362954379 2637 846ebe982d3549c7ede7ce135456f54a ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/dvipdfmx-def/dvipdfmx.def" 1442960879 11976 2fd86bfdf5e6a6a36feb9cc46298f6a1 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphics.sty" 1428932888 14285 20d80486c4ae98139889d8789596c967 ""
   "/usr/local/texlive/2015/texmf-dist/tex/latex/graphics/graphicx.sty" 1428932888 8125 557ab9f1bfa80d369fb45a914aa8a3b4 ""
@@ -36,12 +44,13 @@
   "/usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf" 1443555511 31984 955cb5edfc30372739da64506c874658 ""
   "/usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt" 1434177937 3996148 e442bf765e1b43e29527f5dacfd0ef32 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "Heat.aux" 1450565712 381 8e747903baf56b1ea9f293f400d1f1fb ""
-  "Heat.tex" 1450565711 3515 ae1627ec3ec8282aa5db0bbc318348d3 ""
+  "Heat.aux" 1451498751 665 86c7dea1464120d9985680081ab26b1b ""
+  "Heat.tex" 1451498749 6523 7c2545609456901c2abd9a26b687e0e3 ""
   "extractbb -O heat.png" 0 -1 0 ""
   "heat.png" 1450565109 908904 202e65226df2a2a33ff7a97b507d8640 ""
-  "heat_3.py" 1450564643 897 4f74628a8dbccaae29c0db806a4e6d93 ""
+  "heat_gs.py" 1451479236 868 0c9c3c6ba520144c57d41e41893f6d57 ""
+  "heat_gs_p.py" 1451479394 646 b74ee61d0248196950f3b28a6735446d ""
   (generated)
-  "Heat.log"
   "Heat.dvi"
+  "Heat.log"
   "Heat.aux"
