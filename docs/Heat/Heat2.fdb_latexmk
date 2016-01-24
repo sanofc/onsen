@@ -1,9 +1,9 @@
 # Fdb version 3
-["dvipdf"] 1451225824 "Heat2.dvi" "Heat2.pdf" "Heat2" 1451225825
-  "Heat2.dvi" 1451225824 1276 50e31ae58cb050645adc249afd14416e "latex"
+["dvipdf"] 1452968362 "Heat2.dvi" "Heat2.pdf" "Heat2" 1452968364
+  "Heat2.dvi" 1452968362 1276 6e3d3fe74aa179006c4e62e783dd6e50 "latex"
   (generated)
   "Heat2.pdf"
-["latex"] 1451225824 "Heat2.tex" "Heat2.dvi" "Heat2" 1451225825
+["latex"] 1452968361 "Heat2.tex" "Heat2.dvi" "Heat2" 1452968364
   "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -43,9 +43,9 @@
   "/usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf" 1443555511 31984 955cb5edfc30372739da64506c874658 ""
   "/usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt" 1434177937 3996148 e442bf765e1b43e29527f5dacfd0ef32 ""
   "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
-  "Heat2.aux" 1451225824 156 23fc26eaf94d8d66fda5c1c75f5b8526 ""
-  "Heat2.tex" 1451225822 538 65af18fd81a3de60024b6fcd6fbac2ab ""
+  "Heat2.aux" 1452968362 156 23fc26eaf94d8d66fda5c1c75f5b8526 ""
+  "Heat2.tex" 1452968360 538 65af18fd81a3de60024b6fcd6fbac2ab ""
   (generated)
-  "Heat2.dvi"
-  "Heat2.log"
   "Heat2.aux"
+  "Heat2.log"
+  "Heat2.dvi"

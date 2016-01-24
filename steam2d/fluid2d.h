@@ -53,5 +53,6 @@ double ** get_u();
 double ** get_v();
 double ** get_temperature();
 double ** get_vapor();
+double g_ref(double **g, int i, int j);
 
 #endif

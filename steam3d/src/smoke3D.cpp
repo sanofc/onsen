@@ -11,12 +11,13 @@
 #include "solver.h"
 #include "advect.h"
 #include "render.h"
+#include "perlin.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 
 #define	N			32
-#define LIMIT		50
+#define LIMIT		200
 #define DT			0.2
 #define SPHERE_R	0.2
 #define T_AMB		10.0
@@ -26,6 +27,7 @@ FLOAT *** b = NULL;
 FLOAT *** c = NULL;
 FLOAT *** t = NULL; //temperature
 int frame = 0;
+perlin perlin_noise;
 
 void smoke3D::init() {
 	// Allocate Memory
@@ -58,8 +60,6 @@ static void scene(){
 	// Set Initial Value
 	if( frame < LIMIT/2 ) {
 
-
-
 		// Temperature
 		FOR_EVERY_CELL{
 			t[i][j][k] = T_AMB;
@@ -78,15 +78,19 @@ static void scene(){
 		}
 	} END_FOR
 	*/
+
+
 	
 	// Smoke
-	int w = N/7;
+	int w = N/4;
 	for( int i=-w; i<=w; i++ ) {
 		for( int j=-w; j<=w; j++ ) {
 			if( hypot(i,j) < w ) {
 				for( int k=0; k<1; k++ ) {
-					c[(int)(N/2)+i][k+1][(int)(N/2)+j] = 0.1;
-					t[(int)(N/2)+i][k+1][(int)(N/2)+j] = 15.0;
+					double noise = perlin_noise.noise((double)i*0.1,(double)j*0.1,(double)frame*0.1);
+					noise = (noise < 0) ? 0 : noise;
+					c[(int)(N/2)+i][k+1][(int)(N/2)+j] = noise;
+					t[(int)(N/2)+i][k+1][(int)(N/2)+j] = T_AMB + 5.0 * noise;
 				}
 			}
 		}
@@ -95,7 +99,7 @@ static void scene(){
 	// Give Some External Force
 	FOR_EVERY_CELL {
 		FLOAT alpha = 0.1;
-		FLOAT beta = 0.1;
+		FLOAT beta = 0.2;
 		FLOAT buoy = - alpha * c[i][j][k] + beta * (t[i][j][k]-T_AMB);		
 
 		if(j==1){

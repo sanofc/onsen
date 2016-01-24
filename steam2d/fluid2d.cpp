@@ -98,9 +98,15 @@ int PERIOD(int src, int min, int max){
 
 double g_ref(double **g, int i, int j){ 
 	double ref;
-	if(g==p || g==t || g==t_swap || g==qv || g==qv_swap) ref = g[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
+	if(g==p || g==t || g==t_swap || g==qv || g==qv_swap) ref = g[CLIP(i,1,X-1)][CLIP(j,1,Y-1)];
 	else if(g==u)	 ref = g[CLIP(i,0,X)][CLIP(j,0,Y-1)];
 	else if(g==v)    ref = g[CLIP(i,0,X-1)][CLIP(j,0,Y)];
+	return ref;
+}
+
+double g_ref_for_diffuse(double **g, int i, int j){ 
+	double ref;
+	if(g==p || g==t || g==t_swap || g==qv || g==qv_swap)  ref = g[CLIP(i,1,X-1)][CLIP(j,0,Y-1)];
 	return ref;
 }
 
@@ -150,11 +156,15 @@ void enforce_boundary(){
 	END_FOR
 	START_FOR_Y
 		if(j==0) v[i][j] = 0.0;
-		if(j==Y) v[i][j] = 0.01;
+		if(j==Y) v[i][j] = 0.4;
 	END_FOR
 
 	START_FOR_C
-		if(j==Y) qv[i][j] = 0.0;
+		if(j==Y || i==0 || i==X) {
+			qv[i][j] = 0.0;
+			qs[i][j] = 0.0;
+			t[i][j] = A;
+		}
 	END_FOR
 }
 
@@ -265,7 +275,7 @@ void lin_solve ( double ** x, double ** x0, double a, double c )
 {
 	for (int k=0 ; k<T ; k++ ) {
 		START_FOR_C
-			x[i][j]= (x0[i][j] + a*(g_ref(x,i-1,j)+g_ref(x,i+1,j)+g_ref(x,i,j-1)+g_ref(x,i,j+1)))/c;
+			x[i][j]= (x0[i][j] + a*(g_ref_for_diffuse(x,i-1,j)+g_ref_for_diffuse(x,i+1,j)+g_ref_for_diffuse(x,i,j-1)+g_ref_for_diffuse(x,i,j+1)))/c;
 		END_FOR
 	}
 }
@@ -282,7 +292,7 @@ void compute_diffuse(){
 		v_swap[i][j] = g_ref(v,i,j) + a * (g_ref(v,i-1,j) + g_ref(v,i+1,j) + g_ref(v,i,j-1) + g_ref(v,i,j+1) - 4 * g_ref(v,i,j));
 	END_FOR
 */
-	double Dv = DT * 0.005;
+	double Dv = DT * 0.002;
 	double Dt = DT * 0.001;
 
 	//explicit method
@@ -300,14 +310,14 @@ void compute_diffuse(){
 
 	// implicit method
 	double a;
-	//a = Dt * N * N;
-	//lin_solve(t_swap,t,a,1.0+4.0 * a);
+	a = Dt * N * N;
+	lin_solve(t_swap,t,a,1.0+4.0 * a);
 	a = Dv * N * N;
 	lin_solve(qv_swap,qv,a,1.0+4.0*a);
 
 
 	SWAP(qv,qv_swap);
-	//SWAP(t,t_swap);
+	SWAP(t,t_swap);
 }
 
 void compute_divergence(){
@@ -344,8 +354,8 @@ void initPostDisplay(){
 }
 
 void compute_step(){
-	scene();
 	enforce_boundary();
+	scene();
 	vorticity_confinement();
 	compute_force();
 	compute_advection();

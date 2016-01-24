@@ -10,12 +10,12 @@
 
 #include <stdlib.h>
 
-#define K					0.01	//Buoyancy Coefficient
-#define G					0.0005			//Gravity Coefficient
+#define K					0.03	//Buoyancy Coefficient
+#define G					0.00001			//Gravity Coefficient
 
 
 perlin _perlin;
-int count=0;
+int frame=0;
 
 void scene(){
 
@@ -27,15 +27,16 @@ void scene(){
 		//srand(100);
 		int j = 0;
 
-		double noise = _perlin.noise((double)i*0.01,(double)count*0.01);
+		double noise =1;// _perlin.noise((double)i*0.1,(double)frame*0.01) * 10.0;
 		noise = (noise < 0) ? 0 : noise;
 
-		double pv = noise;//(double)(rand()%20)/100.0;
-		double pt = noise;//(double)(rand()%100)/100.0;
+		double pv = noise * 1.0;//(double)(rand()%20)/100.0;
+		double pt = noise * 4.0;//(double)(rand()%100)/100.0;
 		//t[i][j] + 0.10 * pt;
 		//t[i][j] = 10.0 + 5.0 * pt;
-		t[i][j] = 15.0;
-		v[i][j] = 0.6;//v[i][j] +  pv;
+		//printf("%f",pv);
+		t[i][j] = A + pt;
+		v[i][j] = pv;//v[i][j] +  pv;
 	}
 
 
@@ -45,9 +46,9 @@ void scene(){
 
 	//double m =0.8;
 	//Saturation Vapor Content
-	double a = 11;
+	double a = 12.0;
 	double b = 30;
-	double c = -1.6;
+	double c = -2.0;
 	double m = MIN(a * exp(-b / ((t[i][j]) + c)),v[i][j]+s[i][j]);
 	
 	//double m = a * exp(-b/t[i][j]+c);
@@ -65,7 +66,10 @@ void scene(){
 
 	v[i][j] -= ds;
 
-	double buoy = + K * (t[i][j]-A)/A - G * s[i][j];
+	t[i][j] += 0.01 * ds;
+
+	//double buoy = + K * (t[i][j]-A)/A - G * s[i][j];
+	double buoy = K * (4 * t[i][j] - (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j-1)+g_ref(t,i,j+1)));
 	//double buoy  = G * s[i][j];
 	double noise_x = ((double)(rand()%100)/100.0-0.5) * 0.0;
 	//double noise_x = 0;
@@ -77,7 +81,7 @@ void scene(){
 	}
 	END_FOR
 
-	count++;
+	frame++;
 
 }
 

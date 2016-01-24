@@ -75,8 +75,6 @@ INPUT Steam.tex
 INPUT Steam.tex
 INPUT simulation.png
 INPUT extractbb -O simulation.png
-INPUT Turblence.tex
-INPUT Turblence.tex
 INPUT End.tex
 INPUT End.tex
 INPUT Report.bbl
