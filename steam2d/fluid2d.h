@@ -25,7 +25,7 @@
 #define X					64			//Cell Numbers for X Direction
 #define Y					64			//Cell Numbers for Y Direction
 #define W					512			//Window Size
-#define T					200			//Iteration Numbers
+#define T					100			//Iteration Numbers
 #define V					0.0001			//Viscocity
 #define A					10			//Ambient Temperature
 

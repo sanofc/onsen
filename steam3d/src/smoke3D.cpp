@@ -17,15 +17,16 @@
 #include <math.h>
 
 #define	N			32
-#define LIMIT		200
+#define LIMIT		100
 #define DT			0.2
 #define SPHERE_R	0.2
 #define T_AMB		10.0
 
 FLOAT *** u[3] = { NULL, NULL, NULL };
-FLOAT *** b = NULL;
-FLOAT *** c = NULL;
+FLOAT *** b = NULL; //boundary
+FLOAT *** v = NULL; //concentration(vapor)
 FLOAT *** t = NULL; //temperature
+FLOAT *** s = NULL; //steam
 int frame = 0;
 perlin perlin_noise;
 
@@ -34,9 +35,10 @@ void smoke3D::init() {
 	u[0] = alloc3D(N+1,N,N);
 	u[1] = alloc3D(N,N+1,N);
 	u[2] = alloc3D(N,N,N+1);
-	c = alloc3D(N,N,N);
+	v = alloc3D(N,N,N);
 	b = alloc3D(N,N,N);
 	t = alloc3D(N,N,N);
+	s = alloc3D(N,N,N);
 
 	// Mark Wall Inside A Sphere
 	/*
@@ -78,33 +80,67 @@ static void scene(){
 		}
 	} END_FOR
 	*/
-
-
 	
-	// Smoke
+	// Vapor 
 	int w = N/4;
 	for( int i=-w; i<=w; i++ ) {
 		for( int j=-w; j<=w; j++ ) {
 			if( hypot(i,j) < w ) {
 				for( int k=0; k<1; k++ ) {
-					double noise = perlin_noise.noise((double)i*0.1,(double)j*0.1,(double)frame*0.1);
-					noise = (noise < 0) ? 0 : noise;
-					c[(int)(N/2)+i][k+1][(int)(N/2)+j] = noise;
-					t[(int)(N/2)+i][k+1][(int)(N/2)+j] = T_AMB + 5.0 * noise;
+					//double noise = perlin_noise.noise((double)i*1.0/(double)N,(double)j*1.0/(double)N,(double)frame*1.0/(double)N) * 5.0;
+					//if(noise < 0) noise = 0.0;
+					double noise = 1.0;	
+					v[(int)(N/2)+i][k][(int)(N/2)+j] = noise;
+					t[(int)(N/2)+i][k][(int)(N/2)+j] = T_AMB + 5.0 * noise;
 				}
 			}
 		}
 	}
 
-	// Give Some External Force
+	//buoyancy
+	
 	FOR_EVERY_CELL {
-		FLOAT alpha = 0.1;
-		FLOAT beta = 0.2;
-		FLOAT buoy = - alpha * c[i][j][k] + beta * (t[i][j][k]-T_AMB);		
 
+		if(j<1) continue;
+
+		//Saturation Vapor Content
+		double a = 8.0;
+		double b = 30.0;
+		double c = -2.3;
+		double m = fmin(a * exp(-b / ((t[i][j][k]) + c)),v[i][j][k]+s[i][j][k]);
+
+		//Phase transition
+		double r = 0.7;
+		double ds = r * (v[i][j][k] - m);
+
+		s[i][j][k] += ds;
+		v[i][j][k] -= ds;
+
+		//latent heat
+		t[i][j][k] += 0.5 * ds;
+	
+		//Ambient Temperature
+		FLOAT at;
+
+		//at = T_AMB;
 		if(j==1){
-			u[1][i][j][k] += buoy*c[i][j][k];
+			at = (g_ref(t,i+1,j,k,N) + g_ref(t,i-1,j,k,N) + g_ref(t,i,j+1,k,N) + g_ref(t,i,j,k+1,N) + g_ref(t,i,j,k-1,N))/5.0;
+		}else{
+		    at = (g_ref(t,i+1,j,k,N) + g_ref(t,i-1,j,k,N) + g_ref(t,i,j+1,k,N) + g_ref(t,i,j-1,k,N) + g_ref(t,i,j,k+1,N) + g_ref(t,i,j,k-1,N))/6.0;
 		}
+
+	    //at = (g_ref(t,i+1,j,k,N) + g_ref(t,i-1,j,k,N) + g_ref(t,i,j,k+1,N) + g_ref(t,i,j,k-1,N))/4.0;
+		//FLOAT at = (g_ref(t,i,j+1,k,N) + g_ref(t,i,j-1,k,N))/2.0;
+		//FLOAT at = g_ref(t,i,j+1,k,N);
+
+		// Give Some External Force
+		FLOAT alpha = 0.001;
+		FLOAT beta = 0.1;
+		FLOAT buoy =  -alpha * s[i][j][k] + beta * (t[i][j][k]-at);		
+
+		
+		u[1][i][j][k] += buoy;
+
 	} END_FOR
 }
 
@@ -152,15 +188,39 @@ static void project() {
 
 static void advection() {
 	// Advect
-	advect::advect( u, c, t, N, DT );
+	advect::advect( u, v, s, t, N, DT );
+}
+
+static void diffuse(){
+
+	static FLOAT ***out[2] = { alloc3D(N,N,N), alloc3D(N,N,N)};
+
+	FLOAT Dv = DT * 0.3;
+	FLOAT Dt = DT * 0.2;
+
+	FOR_EVERY_CELL {
+		out[0][i][j][k] = g_ref(v,i,j,k,N) + 
+						Dv * (g_ref(v,i+1,j,k,N) + g_ref(v,i-1,j,k,N) + 
+					  	g_ref(v,i,j+1,k,N) + g_ref(v,i,j-1,k,N) +
+					  	g_ref(v,i,j,k+1,N) + g_ref(v,i,j,k-1,N) - 6 * g_ref(v,i,j,k,N));
+
+		out[1][i][j][k] = g_ref(t,i,j,k,N) + 
+						Dt * out[0][i][j][k] / (double)T_AMB * (g_ref(t,i+1,j,k,N) + g_ref(t,i-1,j,k,N) + 
+					  	g_ref(t,i,j+1,k,N) + g_ref(t,i,j-1,k,N) +
+					  	g_ref(t,i,j,k+1,N) + g_ref(t,i,j,k-1,N) - 6 * g_ref(t,i,j,k,N));
+	} END_FOR
+
+	copy3D(v,out[0],N);
+	copy3D(t,out[1],N);
 }
 
 void smoke3D::simulateStep() {
 	scene();
-	enforce_boundary();
+	diffuse();
 	project();
 	advection();
-	render::render(c,SPHERE_R,N,frame);
+	enforce_boundary();
+	render::render(s,SPHERE_R,N,frame);
 	printf( "wrote frame %d\n", frame );
 	frame ++;
 	if( frame > LIMIT ) exit(0);

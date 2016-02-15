@@ -38,3 +38,11 @@ void copy3D( FLOAT ***dst, FLOAT ***src, int N ) {
 		dst[i][j][k] = src[i][j][k];
 	} END_FOR
 }
+
+// Clamped Fetch
+FLOAT g_ref( FLOAT ***x, int i, int j, int k, int n ) {
+	i = min(max(0,i),n-1);
+	j = min(max(0,j),n-1);
+	k = min(max(0,k),n-1);
+	return x[i][j][k];
+}

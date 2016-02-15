@@ -33,3 +33,4 @@
 FLOAT *** alloc3D( int w, int h, int d );
 void free3D( FLOAT ***ptr );
 void copy3D( FLOAT ***dst, FLOAT ***src, int n );
+FLOAT g_ref(FLOAT ***x, int i, int j, int k, int n );

@@ -38,6 +38,7 @@ $(BINDIR)/$(NAME) : $(SRC:.cpp=.o)
 run: all
 	cd $(BINDIR); 	./$(NAME)
 	ffmpeg -y -i $(BINDIR)/render_%02d.bmp -pix_fmt yuv420p $(BINDIR)/$(NAME).mp4
+	open $(BINDIR)/$(NAME).mp4
 
 depend : $(SRC:.cpp=.d)
 %.d : %.cpp
@@ -52,6 +53,7 @@ clean:
 	rm -rf $(shell find . -name "*.o" -o -name "*.d")
 	rm -rf $(BINDIR)/$(NAME)
 	rm -rf $(BINDIR)/*.bmp
+	rm -rf $(BINDIR)/*.mp4
 	rm -rf GPATH GRTAGS GSYMS GTAGS HTML
 
 ifeq ($(DEP), 1)

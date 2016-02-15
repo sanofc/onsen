@@ -1,0 +1,10 @@
+PWD /Users/sanohiroyuki/prog/onsen/docs/report
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf.cnf
+INPUT /usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt
+INPUT Begin.tex
+OUTPUT Begin.log
+INPUT Begin.aux
+INPUT Begin.aux
+OUTPUT Begin.aux

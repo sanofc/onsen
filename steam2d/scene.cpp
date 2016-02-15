@@ -10,8 +10,8 @@
 
 #include <stdlib.h>
 
-#define K					0.03	//Buoyancy Coefficient
-#define G					0.00001			//Gravity Coefficient
+#define K					0.01 //Buoyancy Coefficient
+#define G					0.0001			//Gravity Coefficient
 
 
 perlin _perlin;
@@ -27,11 +27,12 @@ void scene(){
 		//srand(100);
 		int j = 0;
 
-		double noise =1;// _perlin.noise((double)i*0.1,(double)frame*0.01) * 10.0;
+		//double noise = _perlin.noise((double)i*0.1,(double)frame*0.01) * 10.0;
+		double noise  = 1;
 		noise = (noise < 0) ? 0 : noise;
 
 		double pv = noise * 1.0;//(double)(rand()%20)/100.0;
-		double pt = noise * 4.0;//(double)(rand()%100)/100.0;
+		double pt = noise * 5.0;//(double)(rand()%100)/100.0;
 		//t[i][j] + 0.10 * pt;
 		//t[i][j] = 10.0 + 5.0 * pt;
 		//printf("%f",pv);
@@ -42,11 +43,10 @@ void scene(){
 
 	START_FOR_C
 
-	//double q = (double)j/Y  * 0.0;
+	if ( j == 0 ) continue;
 
-	//double m =0.8;
 	//Saturation Vapor Content
-	double a = 12.0;
+	double a = 5.0;
 	double b = 30;
 	double c = -2.0;
 	double m = MIN(a * exp(-b / ((t[i][j]) + c)),v[i][j]+s[i][j]);
@@ -62,23 +62,32 @@ void scene(){
 
 	//Steam density
 	s[i][j] += ds;
-//	if(s[i][j] > 0){
-
 	v[i][j] -= ds;
 
+	//latent heat
 	t[i][j] += 0.01 * ds;
 
-	//double buoy = + K * (t[i][j]-A)/A - G * s[i][j];
-	double buoy = K * (4 * t[i][j] - (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j-1)+g_ref(t,i,j+1)));
+
+	double t_amb;
+	//t_amb = A;
+	if(j == 1) {
+		t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j+1))/3.0;
+	}else{
+		t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j-1)+g_ref(t,i,j+1))/4.0;
+	}
+	double buoy = K * ((t[i][j] - t_amb)) - G * s[i][j];
+
 	//double buoy  = G * s[i][j];
 	double noise_x = ((double)(rand()%100)/100.0-0.5) * 0.0;
 	//double noise_x = 0;
 	double noise_y = ((double)(rand()%100)/100.0-0.5) * 0.0;
 	//double noise_y = 0;
 	add_force(i,j,0+noise_x,buoy+noise_y);
+
 	if(s[i][j]>0.0001){
 	printf("i%d j%d ds%f s%f v%f m%f t%f buoy%f noise_x%f noise_y%f\n",i,j,ds,s[i][j],v[i][j],m,t[i][j],buoy,noise_x,noise_y);
 	}
+
 	END_FOR
 
 	frame++;

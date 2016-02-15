@@ -1,17 +1,14 @@
 \begin{thebibliography}{10}
 
+\bibitem{smoke3d}
+smoke3d.
+\newblock \url{https://code.google.com/archive/p/smoke3d/}.
+
 \bibitem{Dobashi2000}
 Yoshinori Dobashi, Kazufumi Kaneda, Hideo Yamashita, Tsuyoshi Okita, and
   Tomoyuki Nishita.
 \newblock {A Simple , Efficient Method for Realistic Animation of Clouds}.
 \newblock {\em SIGGRAPH}, 2000.
-
-\bibitem{Dobashi2008}
-Yoshinori Dobashi, Katsutoshi Kusumoto, Tomoyuki Nishita, and Tsuyoshi
-  Yamamoto.
-\newblock {Feedback control of cumuliform cloud formation based on
-  computational fluid dynamics}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~27, No.~3, p.~1, 2008.
 
 \bibitem{Fedkiw2001}
 Ronald Fedkiw, Jos Stam, and Henrik~Wann Jensen.
@@ -62,6 +59,12 @@ Theodore Kim, Nils Th\"{u}rey, Doug James, and Markus Gross.
 \newblock {Wavelet turbulence for fluid simulation}.
 \newblock {\em ACM Transactions on Graphics}, Vol.~27, No.~3, p.~1, 2008.
 
+\bibitem{Mihalef2009}
+Viorel Mihalef, Dimitris Metaxas, and Mark Sussman.
+\newblock {Simulation of two-phase flow with sub-scale droplet and bubble
+  effects}.
+\newblock {\em Computer Graphics Forum}, Vol.~28, No.~2, pp. 229--238, 2009.
+
 \bibitem{Miyazaki2002}
 R~Miyazaki, Y~Dobashi, and T~Nishita.
 \newblock {Simulation of Cumuliform Clouds Based on Computational Fluid
@@ -96,17 +99,6 @@ Duc~Quang Nguyen, Ronald Fedkiw, and Henrik~Wann Jensen.
 MB~Nielsen and Ole \O~sterby.
 \newblock {A Two-Continua Approach to Eulerian Simulation of Water Spray}.
 \newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
-
-\bibitem{Perlin1985}
-Ken Perlin.
-\newblock An image synthesizer.
-\newblock {\em SIGGRAPH Comput. Graph.}, Vol.~19, No.~3, pp. 287--296, July
-  1985.
-
-\bibitem{Perlin2002}
-Ken Perlin.
-\newblock {Improving noise}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~21, No.~3, pp. 2--3, 2002.
 
 \bibitem{Selle2008}
 Andrew Selle, Ronald Fedkiw, Byungmoon Kim, Yingjie Liu, and Jarek Rossignac.

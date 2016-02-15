@@ -87,14 +87,14 @@ void semiLagrangian( FLOAT ***d, FLOAT ***d0, int width, int height, int depth, 
 	}
 }
 
-void advect::advect( FLOAT ****u, FLOAT ***c, FLOAT ***t, int N, FLOAT dt ) {
+void advect::advect( FLOAT ****u, FLOAT ***c, FLOAT ***s, FLOAT ***t, int N, FLOAT dt ) {
 	
 	// Compute Fluid Velocity At Each Staggered Faces And Concentration Cell Centers
 	static FLOAT ***ux[3] = { alloc3D(N+1,N,N), alloc3D(N+1,N,N), alloc3D(N+1,N,N) };
 	static FLOAT ***uy[3] = { alloc3D(N,N+1,N), alloc3D(N,N+1,N), alloc3D(N,N+1,N) };
 	static FLOAT ***uz[3] = { alloc3D(N,N,N+1), alloc3D(N,N,N+1), alloc3D(N,N,N+1) };
 	static FLOAT ***uc[3] = { alloc3D(N,N,N), alloc3D(N,N,N), alloc3D(N,N,N) };
-	static FLOAT ***out[5] = { alloc3D(N+1,N,N), alloc3D(N,N+1,N), alloc3D(N,N,N+1), alloc3D(N,N,N) , alloc3D(N,N,N) };
+	static FLOAT ***out[6] = { alloc3D(N+1,N,N), alloc3D(N,N+1,N), alloc3D(N,N,N+1), alloc3D(N,N,N) , alloc3D(N,N,N) ,alloc3D(N,N,N)};
 	
 	FOR_EVERY_X_FLOW {
 		ux[0][i][j][k] = u[0][i][j][k];
@@ -129,16 +129,20 @@ void advect::advect( FLOAT ****u, FLOAT ***c, FLOAT ***t, int N, FLOAT dt ) {
 	// BackTrace Z Flow
 	semiLagrangian( out[2], u[2], N, N, N+1, uz, N, dt );
 	
-	// BackTrace Concentration
+	// BackTrace Vapor Concentration
 	semiLagrangian( out[3], c, N, N, N, uc, N, dt );
 
+	// BackTrace Steam Concentration
+	semiLagrangian( out[4], s, N, N, N, uc, N, dt );
+
 	// BackTrace Temperature
-	semiLagrangian( out[4], t, N, N, N, uc, N, dt);
+	semiLagrangian( out[5], t, N, N, N, uc, N, dt);
 	
 	// Copy Back To The Result
 	copy3D(u[0],out[0],N);
 	copy3D(u[1],out[1],N);
 	copy3D(u[2],out[2],N);
 	copy3D(c,out[3],N);
-	copy3D(t,out[4],N);
+	copy3D(s,out[4],N);
+	copy3D(t,out[5],N);
 }

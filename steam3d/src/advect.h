@@ -7,5 +7,12 @@
 #include "types.h"
 
 namespace advect {
-	void advect( FLOAT ****u, FLOAT ***c, FLOAT ***t, int n, FLOAT dt );
+
+	/*
+	 * u : Velocity 
+	 * c : Vaper Concentration
+	 * s : Steam Concentration
+	 * t : Temperature
+	 */
+	void advect( FLOAT ****u, FLOAT ***c, FLOAT ***s, FLOAT ***t, int n, FLOAT dt );
 }
