@@ -1,0 +1,126 @@
+\begin{thebibliography}{10}
+
+\bibitem{smoke3d}
+smoke3d.
+\newblock \url{https://code.google.com/archive/p/smoke3d/}.
+
+\bibitem{Dobashi2000}
+Yoshinori Dobashi, Kazufumi Kaneda, Hideo Yamashita, Tsuyoshi Okita, and
+  Tomoyuki Nishita.
+\newblock {A Simple , Efficient Method for Realistic Animation of Clouds}.
+\newblock {\em SIGGRAPH}, 2000.
+
+\bibitem{Fedkiw2001}
+Ronald Fedkiw, Jos Stam, and Henrik~Wann Jensen.
+\newblock Visual simulation of smoke.
+\newblock In {\em Proceedings of the 28th Annual Conference on Computer
+  Graphics and Interactive Techniques}, SIGGRAPH '01, pp. 15--22. ACM, 2001.
+
+\bibitem{Feldman2003}
+Bryan~E. Feldman, James~F. O'Brien, and Okan Arikan.
+\newblock {Animating suspended particle explosions}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~22, No.~3, p. 708, 2003.
+
+\bibitem{Foster2001}
+Nick Foster and Ronald Fedkiw.
+\newblock Practical animation of liquids.
+\newblock In {\em Proceedings of the 28th annual conference on Computer
+  graphics and interactive techniques}, pp. 23--30. ACM, 2001.
+
+\bibitem{Foster1996}
+Nick Foster and Dimitri Metaxas.
+\newblock {Realistic Animation of Liquids}.
+\newblock {\em Graphical Models and Image Processing}, Vol.~58, No.~5, pp.
+  471--483, 1996.
+
+\bibitem{Foster1997}
+Nick Foster and Dimitris Metaxas.
+\newblock {Modeling the Motion of a Hot, Turbulent Gas}.
+\newblock {\em SIGGRAPH}, 1997.
+
+\bibitem{Gardner1985}
+Geoffrey~Y. Gardner.
+\newblock {Visual simulation of clouds}.
+\newblock {\em ACM SIGGRAPH Computer Graphics}, Vol.~19, No.~3, pp. 297--304,
+  1985.
+
+\bibitem{Ishikawa}
+Tomokazu Ishikawa and Yonghao Y U~E Member.
+\newblock {Visual Simulation of Solar Photosphere Based on Magnetohydrodynamics
+  and Quantum Theory}.
+
+\bibitem{Kim2005}
+ByungMoon Kim, Yingjie Liu, Ignacio Llamas, and Jarek Rossignac.
+\newblock {FlowFixer: Using BFECC for fluid simulation}.
+\newblock {\em Natural Phenomena}, pp. 51--56, 2005.
+
+\bibitem{Kim2008}
+Theodore Kim, Nils Th\"{u}rey, Doug James, and Markus Gross.
+\newblock {Wavelet turbulence for fluid simulation}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~27, No.~3, p.~1, 2008.
+
+\bibitem{Mihalef2009}
+Viorel Mihalef, Dimitris Metaxas, and Mark Sussman.
+\newblock {Simulation of two-phase flow with sub-scale droplet and bubble
+  effects}.
+\newblock {\em Computer Graphics Forum}, Vol.~28, No.~2, pp. 229--238, 2009.
+
+\bibitem{Miyazaki2002}
+R~Miyazaki, Y~Dobashi, and T~Nishita.
+\newblock {Simulation of Cumuliform Clouds Based on Computational Fluid
+  Dynamics}.
+\newblock 2002.
+
+\bibitem{Miyazaki2001}
+R.~Miyazaki, S.~Yoshida, Y.~Dobashi, and T.~Nishita.
+\newblock {A method for modeling clouds based on atmospheric fluid dynamics}.
+\newblock {\em Proceedings Ninth Pacific Conference on Computer Graphics and
+  Applications. Pacific Graphics 2001}, 2001.
+
+\bibitem{Mizuno2003}
+R.~Mizuno, Y.~Dobashi, Bing-Yu Chen Bing-Yu Chen, and T.~Nishita.
+\newblock {Physics motivated modeling of volcanic clouds as a two fluids
+  model}.
+\newblock {\em 11th Pacific Conference onComputer Graphics and Applications,
+  2003. Proceedings.}, No. August, pp. 2--6, 2003.
+
+\bibitem{Mizuno2004}
+Ryoichi Mizuno, Yoshinori Dobashi, and Tomoyuki Nishita.
+\newblock {Modeling of volcanic clouds using CML}.
+\newblock {\em Journal of Information Science and Engineering}, Vol.~20, No.~2,
+  pp. 219--232, 2004.
+
+\bibitem{Nguyen2002}
+Duc~Quang Nguyen, Ronald Fedkiw, and Henrik~Wann Jensen.
+\newblock {Physically based modeling and animation of fire}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~21, No.~3, 2002.
+
+\bibitem{Nielsen2013}
+MB~Nielsen and Ole \O~sterby.
+\newblock {A Two-Continua Approach to Eulerian Simulation of Water Spray}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
+
+\bibitem{Selle2008}
+Andrew Selle, Ronald Fedkiw, Byungmoon Kim, Yingjie Liu, and Jarek Rossignac.
+\newblock {An unconditionally stable MacCormack method}.
+\newblock {\em Journal of Scientific Computing}, Vol.~35, No. 2-3, pp.
+  350--371, 2008.
+
+\bibitem{Stam1999}
+Jos Stam.
+\newblock {Stable Fluids}.
+\newblock {\em Proceedings of the 26th annual conference on Computer graphics
+  and interactive techniques}, pp. 121--128, 1999.
+
+\bibitem{Zhu2005}
+Yongning Zhu and Robert Bridson.
+\newblock {Animating sand as a fluid}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~24, No.~3, p. 965, 2005.
+
+\bibitem{Fujisawa2008}
+藤澤誠.
+\newblock
+  コンピュータグラフィックスにおける物質の三態シミュレーションに関する研究,
+  2008.
+
+\end{thebibliography}

@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1452997860 "Steam.dvi" "Steam.pdf" "Steam" 1452997862
+  "Steam.dvi" 1452997859 944 e39f30cd625e8e567b015bf25e87ff46 "latex"
+  (generated)
+  "Steam.pdf"
+["latex"] 1452997859 "Steam.tex" "Steam.dvi" "Steam" 1452997862
+  "/usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "/usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1136768653 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "/usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf" 1443555511 31984 955cb5edfc30372739da64506c874658 ""
+  "/usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt" 1434177937 3996148 e442bf765e1b43e29527f5dacfd0ef32 ""
+  "/usr/local/texlive/2015/texmf.cnf" 1432479636 577 0d611272082f3cdb8e80e09a3c69cf07 ""
+  "Steam.aux" 1452997859 8 a94a2480d3289e625eea47cd1b285758 ""
+  "Steam.tex" 1452997857 3470 1a294dd124e0c8cb288c7d0f6e2e8937 ""
+  (generated)
+  "Steam.dvi"
+  "Steam.log"

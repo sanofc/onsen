@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{Bridson2007}
+R~Bridson and M~Muller-Fischer.
+\newblock {Fluid simulation: Siggraph 2007 course notes}, 2007.
+
+\bibitem{Fedkiw2001}
+Ronald Fedkiw, Jos Stam, and Henrik~Wann Jensen.
+\newblock Visual simulation of smoke.
+\newblock In {\em Proceedings of the 28th Annual Conference on Computer
+  Graphics and Interactive Techniques}, SIGGRAPH '01, pp. 15--22. ACM, 2001.
+
+\end{thebibliography}
