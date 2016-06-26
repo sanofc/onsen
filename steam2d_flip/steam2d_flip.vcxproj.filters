@@ -13,6 +13,9 @@
     <ClCompile Include="scene.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="particle.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fluid2d.h">
@@ -24,6 +27,9 @@
     <ClInclude Include="scene.h">
       <Filter>ヘッダファイル</Filter>
     </ClInclude>
+    <ClInclude Include="particle.h">
+      <Filter>ヘッダファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ソースファイル">
@@ -32,5 +38,8 @@
     <Filter Include="ヘッダファイル">
       <UniqueIdentifier>{7a19ce08-d98d-4ab3-8108-a6a3a58578a8}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

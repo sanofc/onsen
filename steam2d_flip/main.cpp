@@ -1,6 +1,7 @@
 #include "fluid2d.h"
+#include "particle.h"
 
-int show_v,show_g,show_s;		//Show Flag(Velocity,Grid)
+int show_v,show_g,show_s,show_p;		//Show Flag(Velocity,Grid,Steam,Particle)
 int mx_prev,my_prev,mstat;		//Mouse
 
 using namespace std;
@@ -15,7 +16,8 @@ void keyboard(unsigned char key, int x, int y){
 		case 'q':final();exit(0);break;
 		case 'v':show_v = !show_v;break;
 		case 'g':show_g = !show_g;break;
-		case 's':show_s = show_s == 2 ? 0 : show_s+1;break;
+		case 's':show_s = show_s == 3 ? 0 : show_s+1;break;
+		case 'p':show_p = !show_p;break;
 	}
 }
 
@@ -89,6 +91,9 @@ void displayConcentration(double **c){
 
 void displayDensity(double **s, double max){
 	START_FOR(X-1,Y-1)
+		if (s[i][j] > 0) {
+			//printf("%d\n", s[i][j]);
+		}
 	double pos[2]={i*H+H*0.5,j*H+H*0.5};
 	glBegin(GL_QUADS);
 	glColor4d(s[i][j]/max,s[i][j]/max,s[i][j]/max,s[i][j]/max);
@@ -118,10 +123,12 @@ void displayTemperature(){
 
 void displayParticle() {
 	vector<particle *> particles = get_particles();
+	printf("particle num %d\n", particles.size());
 	for (auto p : particles) {
 		//cout << p->p[0] << " " << p->p[1] << endl;
-		glColor4f(0.0, 0.0, 1.0, 1.0);
-		glPointSize(1.0);
+		glColor4f(0, 0, 1.0, 1.0);
+		glPointSize(p->dens * 10);
+		glEnable(GL_POINT_SMOOTH);
 		glBegin(GL_POINTS);
 		glVertex2d(p->p[0],p->p[1]);
 		//glVertex2d(0.5, 0.5);
@@ -169,11 +176,12 @@ void display(){
 	if(show_g)displayGrid();
 	if(show_v)displayVelocity();
 	switch(show_s){
-		case 0 : displaySteam();break;
-		case 1 : displayVapor();break;
-		case 2 : displayTemperature();break;
+		case 0 : break;
+		case 1 : displaySteam();break;
+		case 2 : displayVapor();break;
+		case 3 : displayTemperature();break;
 	}
-	displayParticle();
+	if(show_p)displayParticle();
 	displayText();
 	glutSwapBuffers();
 	initPostDisplay();

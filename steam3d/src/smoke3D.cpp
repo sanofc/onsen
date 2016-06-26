@@ -85,15 +85,15 @@ static void scene(){
 	*/
 	
 	// Vapor 
-	int w = N/4;
+	int w = N/2;
 	for( int i=-w; i<=w; i++ ) {
 		for( int j=-w; j<=w; j++ ) {
 			if( hypot(i,j) < w ) {
 				for( int k=0; k<1; k++ ) {
-					double noise = perlin_noise.noise((double)i*1.0/(double)(N/2),(double)j*1.0/(double)(N/2),(double)frame*1.0/(double)(N/2)) * 8.0;
-					if(noise < 0) noise = 0.0;
-					//double noise = 1.0;	
-					v[(int)(N/2)+i][k][(int)(N/2)+j] = noise;
+					//double noise = perlin_noise.noise((double)i*1.0/(double)(N/2),(double)j*1.0/(double)(N/2),(double)frame*1.0/(double)(N/2)) * 8.0;
+					//if(noise < 0) noise = 0.0;
+					double noise = 1.0;	
+					v[(int)(N/2)+i][k][(int)(N/2)+j] = noise * 2.0;
 					t[(int)(N/2)+i][k][(int)(N/2)+j] = T_AMB + 5.0 * noise;
 				}
 			}
@@ -107,7 +107,7 @@ static void scene(){
 		if(j<1) continue;
 
 		//Saturation Vapor Content
-		double a = 8.0;
+		double a = 10.0;
 		double b = 30.0;
 		double c = -2.3;
 		double m = fmin(a * exp(-b / ((t[i][j][k]) + c)),v[i][j][k]+s[i][j][k]);
@@ -139,8 +139,8 @@ static void scene(){
 		//FLOAT at = g_ref(t,i,j+1,k,N);
 
 		// Give Some External Force
-		FLOAT alpha = 0.001;
-		FLOAT beta = 0.005;
+		FLOAT alpha = 0.002;
+		FLOAT beta = 0.003;
 		FLOAT buoy =  -alpha * s[i][j][k] + beta * (t[i][j][k]-at);		
 
 		
@@ -158,7 +158,7 @@ static void enforce_boundary() {
 	FOR_EVERY_Y_FLOW {
 		//if( j==0 || j==N ) u[1][i][j][k] = 0.0;
 		if (j == 0) u[1][i][j][k] = 0.0;
-		if (j == N) u[1][i][j][k] = 0.01;
+		if (j == N) u[1][i][j][k] = 0.05;
 	} END_FOR
 	
 	FOR_EVERY_Z_FLOW {

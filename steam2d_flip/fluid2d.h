@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "scene.h"
+#include "particle.h"
 #include <vector>
 #include <iostream>
 
@@ -31,6 +32,8 @@
 #define T					100			//Iteration Numbers
 #define V					0.0001			//Viscocity
 #define A					10			//Ambient Temperature
+#define K					0.003		//Buoyancy Coefficient
+#define G					0.0005			//Gravity Coefficient
 
 #define VAPOR				0
 #define WATER				1
@@ -50,13 +53,6 @@ static const double H = M/N;			//Cell Size
 #define MAX(i,j)			(i<j?j:i)
 #define CLIP(src,min,max)	MAX(min,MIN(max,src))
 
-struct particle {
-	double p[2];
-	double u[2];
-	char type;
-	double temperature;
-	double dens;
-};
 
 void init();
 void final();
