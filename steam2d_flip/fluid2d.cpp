@@ -26,7 +26,7 @@ void free2d(double **ptr, int n){
 	free(ptr);
 }
 
-void init(){
+void fluid2d::init(){
 	
 	if(!qs) qs = alloc2d(X,Y);
 	if(!qs_swap) qs_swap = alloc2d(X,Y);
@@ -308,14 +308,27 @@ void compute_particles_advection() {
 		p->p[1] += p->v(v);
 	}*/
 
-	for (auto p : particles) {
-		double u_air = interpolation(u, p->p[0]*N, p->p[1]*N, X + 1, Y);
-		double v_air = interpolation(v, p->p[0]*N, p->p[1]*N, X, Y + 1);
-		double drag = p->u[0] - (u_air - p->u[0])  * (p->dens/1.0) * 0.1;
-		double lift = p->u[1] - (v_air - p->u[1])  * (p->dens/1.0) * 0.1;
+	double a = 20;
 
-		p->p[0] += drag;
-		p->p[1] += lift;
+	for (auto p : particles) {
+		double u_air = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
+		double v_air = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
+		double u_rel = p->u[0] - u_air;
+		double v_rel = p->u[1] - v_air;
+		double drag = - a * std::abs(u_rel) * u_rel;
+		double lift = - a * std::abs(v_rel) * v_rel - G * 0.001;
+		drag = isnan(drag) ? 0 : drag;
+		lift = isnan(lift) ? 0 : lift;
+		if (abs(drag) > 0) {
+		//	printf("%f %f\n", drag, lift);
+		}
+		p->u[0] += drag;
+		p->u[1] += lift;
+		//p->u[0] = u_air;
+		//p->u[1] = v_air;
+
+		p->p[0] += p->u[0];
+		p->p[1] += p->u[1];
 	}
 
 }
@@ -421,10 +434,6 @@ double random() {
 
 void phase_transition() {
 
-	START_FOR_C
-		qs[i][j] = 0.0;
-		qs_swap[i][j] = 0.0;
-	END_FOR
 	
 	/*
 	for (auto particle : particles) {
@@ -439,7 +448,7 @@ void phase_transition() {
 	if (j == 0) continue;
 
 	//Saturation Vapor Content
-	double a = 4.0;
+	double a = 2.0;
 	double b = 30;
 	double c = -2.0;
 
@@ -454,9 +463,7 @@ void phase_transition() {
 	double r = 0.7;
 	double ds = r * (qv[i][j] - m);
 
-	//Steam density
-	qs[i][j] += ds;
-	qv[i][j] -= ds;
+
 
 	/*
 	if (qs[i][j] <= 0) {
@@ -481,7 +488,39 @@ void phase_transition() {
 
 		//Number of particles in grid
 		int particles_num = particles_in_grid.size();
+		
+		
+		if (ds > 0) {
+			
+			double dens_in_particle = 0.001;
 
+			int create_particles_num = ds / dens_in_particle;
+
+			for (int k = 0; k < create_particles_num; k++) {
+				particle *p = new particle;
+				p->p[0] = (double)i / (double)X + random() * H;
+				p->p[1] = (double)j / (double)Y + random() * H;
+				p->u[0] = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
+				p->u[1] = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
+				p->dens = dens_in_particle;
+				add_particle(p);
+			}
+		}
+		else if(ds < 0){
+			for (auto particle : particles_in_grid) {
+				particle->dens += ds;
+				if (particle->dens < 0) {
+					ds = particle->dens;
+					particle->dens = 0.0;
+				}
+			}
+		}
+		
+		//Steam density
+		qs[i][j] += ds;
+		qv[i][j] -= ds;
+
+		/*
 		if (particles_num >= 10) {
 			for (auto particle : particles_in_grid) {
 				particle->dens += ds / (double)particles_num;
@@ -504,10 +543,12 @@ void phase_transition() {
 					}
 					else {
 						ds = particle->dens;
+						particle->dens=0.0;
 					}
 				}
 			}
-		}
+		}*/
+		
 
 
 	//}
@@ -515,7 +556,7 @@ void phase_transition() {
 
 
 	//latent heat
-	t[i][j] += 0.01 * ds;
+	//t[i][j] += 0.01 * ds;
 
 
 	double t_amb;
@@ -528,13 +569,13 @@ void phase_transition() {
 	}*/
 	//t_amb = g_ref(t, i - 1, j) + g_ref(t, i + 1, j) / 2.0;
 
-	double buoy = K * ((t[i][j] - t_amb)) -G * qs[i][j];
+	double buoy = K * ((t[i][j] - t_amb)/t_amb);// -G * qs[i][j];
 
 	//double buoy  = G * s[i][j];
-	double noise_x = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
-	//double noise_x = 0;
-	double noise_y = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
-	//double noise_y = 0;
+	//double noise_x = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
+	double noise_x = 0;
+	//double noise_y = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
+	double noise_y = 0;
 	add_force(i, j, 0 + noise_x, buoy + noise_y);
 
 	/*if (qs[i][j]>0.0001) {
@@ -548,7 +589,7 @@ void phase_transition() {
 
 		//printf("dens%d x%d y%d\n", (*particle)->dens, (*particle)->x(),(*particle)->y() );
 		
-		if ((*particle)->dens <= 0.00001) {
+		if ((*particle)->dens == 0.0) {
 			particle = particles.erase(particle);
 		}
 		else {
@@ -559,6 +600,12 @@ void phase_transition() {
 
 
 void compute_particle_density() {
+
+	START_FOR_C
+	qs[i][j] = 0.0;
+	qs_swap[i][j] = 0.0;
+	END_FOR
+
 	for (auto particle : particles) {
 		int px = particle->x();
 		int py = particle->y();

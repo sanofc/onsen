@@ -6,9 +6,19 @@ int mx_prev,my_prev,mstat;		//Mouse
 
 using namespace std;
 
-void idle(){
+void init() {
+	show_p = 1;
+	show_s = 1;
+}
+
+void idle() {
 	compute_step();
 	glutPostRedisplay();
+}
+
+void timer(int value) {
+	idle();
+	glutTimerFunc(100, timer, 0);
 }
 
 void keyboard(unsigned char key, int x, int y){
@@ -110,7 +120,7 @@ void displayDensity(double **s, double max){
 
 
 void displaySteam(){
-	displayDensity(get_steam(),1.0);
+	displayDensity(get_steam(),0.3);
 }
 
 void displayVapor(){
@@ -195,13 +205,15 @@ void reshape(int w, int h){
 
 int main(int argc, char * argv[]){
 	show_v = show_g = 0;
+	fluid2d::init();
 	init();
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE);
 	glutInitWindowPosition(100,100);
 	glutInitWindowSize(W*(double)X/N,W*(double)Y/N);
 	glutCreateWindow("steam2d");
-	glutIdleFunc(idle);
+	//glutIdleFunc(idle);
+	glutTimerFunc(100, timer, 0);
 	glutKeyboardFunc(keyboard);
 	glutMouseFunc(mouse);
 	glutMotionFunc(motion);

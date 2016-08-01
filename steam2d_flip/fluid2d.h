@@ -25,9 +25,9 @@
 
 #define	DT					0.1			//Time Step
 #define M					1.0			//Grid Size
-#define	N					64			//Cell Numbers for One Grid
-#define X					64			//Cell Numbers for X Direction
-#define Y					64			//Cell Numbers for Y Direction
+#define	N					32			//Cell Numbers for One Grid
+#define X					32			//Cell Numbers for X Direction
+#define Y					32			//Cell Numbers for Y Direction
 #define W					512			//Window Size
 #define T					100			//Iteration Numbers
 #define V					0.0001			//Viscocity
@@ -53,8 +53,9 @@ static const double H = M/N;			//Cell Size
 #define MAX(i,j)			(i<j?j:i)
 #define CLIP(src,min,max)	MAX(min,MIN(max,src))
 
-
-void init();
+namespace fluid2d {
+	void init();
+}
 void final();
 void initPostDisplay();
 void compute_step();

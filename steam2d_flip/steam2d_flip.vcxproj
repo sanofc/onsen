@@ -83,6 +83,7 @@
     <ExecutablePath>$(SolutionDir)Externals\freeglut-3.0.0\build\bin\$(Configuration);$(VC_ExecutablePath_x86);$(WindowsSDK_ExecutablePath);$(VS_ExecutablePath);$(MSBuild_ExecutablePath);$(SystemRoot)\SysWow64;$(FxCopDir);$(PATH)</ExecutablePath>
     <IncludePath>$(SolutionDir)Externals\freeglut-3.0.0\include;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)Externals\freeglut-3.0.0\build\lib\$(Configuration);$(LibraryPath)</LibraryPath>
+    <PostBuildEventUseInBuild>false</PostBuildEventUseInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

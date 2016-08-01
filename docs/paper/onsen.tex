@@ -1,23 +1,24 @@
 
-\documentclass[submit]{ipsj}
+%\documentclass[submit,techrep]{ipsj}
 %\documentclass{ipsj}
+\documentclass[submit,techrep]{ipsj}
 
-\usepackage{graphicx}
+\usepackage[dvips]{graphicx}
 \usepackage{latexsym}
 
 \def\Underline{\setbox0\hbox\bgroup\let\\\endUnderline}
 \def\endUnderline{\vphantom{y}\egroup\smash{\underline{\box0}}\\}
 \def\|{\verb|}
 
-%\setcounter{巻数}{57}
+\setcounter{巻数}{57}
 %\setcounter{号数}{1}
 %\setcounter{page}{1}
 
 
-%\受付{2015}{3}{4}
+%\受付{2016}{6}{30}
 %\再受付{2015}{7}{16}   %省略可能
 %\再再受付{2015}{7}{20} %省略可能
-%\採録{2015}{8}{1}
+%\採録{2016}{7}{1}
 
 
 
@@ -29,74 +30,40 @@
 
 \etitle{Visual Simulation of Steam}
 
-\affiliate{OUJ}{放送大学大学院}
+\affiliate{OUJ}{放送大学\\
+The Open University of Japan}
 
 
-\paffiliate{JU}{情報処理大学\\
-Johoshori University}
+%\paffiliate{JU}{情報処理大学\\
+%Johoshori University}
 
 \author{佐野 宏行}{Hiroyuki Sano}{OUJ}
-\author{浅井　紀久夫}{Kikuo Aasai}{OUJ}
+\author{浅井　紀久夫}{Kikuo Asai}{OUJ}
 
 \begin{abstract}
 本研究ではCGによる湯気のビジュアルシミュレーションを行うことを目的とする。湯気の状態に影響する水蒸気量、温度といったパラメータにより実用的な計算時間により湯気の表現を可能とする。流体計算は格子法と粒子法を組み合わせることにより相転移を表現する手法を提案する。
 \end{abstract}
 
 
-\begin{jkeyword}
-情報処理学会論文誌ジャーナル，\LaTeX，スタイルファイル，べからず集
-\end{jkeyword}
+%\begin{jkeyword}
 
-\begin{eabstract}
-This document is a guide to prepare a draft for submitting to IPSJ
-Journal, and the final camera-ready manuscript of a paper to appear in
-IPSJ Journal, using {\LaTeX} and special style files.  Since this
-document itself is produced with the style files, it will help you to
-refer its source file which is distributed with the style files.
-\end{eabstract}
-
-\begin{ekeyword}
-IPSJ Journal, \LaTeX, style files, ``Dos and Don'ts'' list
-\end{ekeyword}
+%\end{jkeyword}
 
 \maketitle
 
 %1
 \section{はじめに}
 
-情報処理学会では，基幹論文誌として論文誌ジャーナルの発行を行っている．
-現在論文誌ジャーナル編集委員会では，
-論文誌ジャーナルの論文掲載時のフォーマットとして
-A4縦型2段組を採用している．
-また，以前は投稿時と掲載時の形式が異なっていたが，
-現在では，
-投稿時も掲載時と同様のA4縦型2段組で受け付けることにした．
+コンピュータグラフィックス(CG)において湯気の表現は現実感を増幅する場合に非常に重要な要素である。
+CGの研究においては水,煙といった流体シミュレーションの研究は盛んに行われるが,水の特徴である三態変化を扱う研究はほどんど行われていない。
+特に水が相転移する際に発生する湯気の表現手法は確立しておらず,クリエーターによる熟練した技術と経験が必要となっている。
 
+本稿においては温度、水蒸気量といった湯気の状態に影響するパラメータを変化させることによりCGによる湯気の可視化を行うことを目的とする。
+流体計算は格子法と粒子法を組み合わせることにより相転移を表現する手法を提案する。
 
+%これにより従来のCGでは作成できない温度,水蒸気量を考慮した温泉,暖かい料理といったシーンを表現可能となり,よりCGの表現能力を上げることができる.VR,AR技術においても現実感を増幅するための要素として応用が期待できる.
 
-本稿では，
-まずスタイルファイルを用いた論文のフォーマットに関して述べる．
-新たなスタイルファイルでは，
-極力特別なコマンドは使わずに，標準的な \LaTeX のスタイルを踏襲している．
-論文フォーマットに関しては，\ref{sec:format}~章で
-後述する指針に従って頂くが，
-そこに規定されていること以外は標準的な\LaTeX のコマンドをそのまま使うことができる．
-本稿は，そのスタイルファイルを実際に使っているので，
-論文執筆の際に参考にされたい．
-
-
-
-
-\footnotetext{本文は実際には論文誌ジャーナル編集委員会で作成したものである．}
-
-また，論文誌ジャーナル編集委員会では，論文の執筆する際に，
-著者がするべきこと，するべきでないことを「べからず集」としてまとめた．
-本稿の後半に，論文の内容に関する指針になるように，
-「べからず集」の内容をチェックリストとしてつけているので，
-投稿する前の内容のチェックに利用されたい．
-
-
-
+%\footnotetext{本文は実際には論文誌ジャーナル編集委員会で作成したものである．}
 
 %2
 \section{投稿の流れ}

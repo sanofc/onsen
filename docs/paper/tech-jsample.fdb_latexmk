@@ -1,10 +1,10 @@
 # Fdb version 3
-["dvipdf"] 1469988417 "jsample.dvi" "jsample.pdf" "jsample" 1469988418
-  "jsample.dvi" 1469988413 70220 87901e0eacc66b2930c78a3f3bfefadc "latex"
+["dvipdf"] 1470061577 "tech-jsample.dvi" "tech-jsample.pdf" "tech-jsample" 1470061578
+  "tech-jsample.dvi" 1470061574 63428 6a37ac988cbbd62a7ae1dc1c3c7d50df "latex"
   (generated)
-  "jsample.pdf"
-["latex"] 1469988413 "jsample.tex" "jsample.dvi" "jsample" 1469988418
-  "./jsample.tex" 1469988009 46315 cf2cd397117d68a4fbe4f00c5a74ddff ""
+  "tech-jsample.pdf"
+["latex"] 1470061573 "tech-jsample.tex" "tech-jsample.dvi" "tech-jsample" 1470061578
+  "./tech-jsample.tex" 1470061569 44649 d709b7e63dd4b79a1f08505a25777887 ""
   "c:/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1456493844 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/adobe/times/ptmr7t.tfm" 1456494656 2124 2601a75482e9426d33db523edf23570a ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/ptex/jis/jis.tfm" 1456494444 468 53f854284f6afa6c36aaa2d1090ecc12 ""
@@ -16,7 +16,6 @@
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx7.tfm" 1456493555 1336 3125ccb448c1a09074e3aa4a9832f130 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm" 1456493555 1332 1fde11373e221473104d6cc5993f046e ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx9.tfm" 1456493555 1328 5442e22a7072966dbaf88ca900acf3f0 ""
-  "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbxti10.tfm" 1456493555 1532 9162035f4e7176612125649e348e2195 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmcsc10.tfm" 1456493555 1300 63a6111ee6274895728663cf4b4e7e81 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmex10.tfm" 1456493555 992 662f679a0b3d2d53c1b94050fdaa3f50 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi10.tfm" 1456493555 1528 abec98dbc43e172678c11b3b9031252a ""
@@ -33,9 +32,6 @@
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr6.tfm" 1456493555 1300 b62933e007d01cfd073f79b963c01526 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr7.tfm" 1456493555 1300 53d07721103816e093902637bc167021 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmr8.tfm" 1456493555 1292 21c1c5bfeaebccffdb478fd231a0997d ""
-  "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmss8.tfm" 1456493555 1296 d77f431d10d47c8ea2cc18cf45346274 ""
-  "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmss9.tfm" 1456493555 1320 49357c421c0d469f88b867dd0c3d10e8 ""
-  "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmssbx10.tfm" 1456493555 1272 e2d13f0df30bf3ad990bb9d028e37f34 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm" 1456493555 1124 6c73e740cf17375f03eec0ee63599741 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy5.tfm" 1456493555 1112 14d5d5f6bd3c949edecb5b872f295553 ""
   "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm" 1456493555 1116 933a60c408fc0a863a92debe84b2d294 ""
@@ -68,9 +64,10 @@
   "c:/texlive/2015/texmf-var/web2c/eptex/platex.fmt" 1456495045 3997157 7d74e4299f5b8d49d65c13c24a59818d ""
   "c:/texlive/2015/texmf.cnf" 1456494839 497 7277663fd190ea5a4fe922b182dc7be2 ""
   "ipsj.cls" 1464447784 140382 5973a916942d5571ea00fe1d62ea1b43 ""
-  "jsample.aux" 1469988413 6324 43bdd03869e53403414747896a3d71e8 ""
-  "jsample.tex" 1469988009 46315 cf2cd397117d68a4fbe4f00c5a74ddff ""
+  "ipsjtech.sty" 1464447784 6572 e752553af768fcae894e19205d3a7d42 ""
+  "tech-jsample.aux" 1470061573 5850 ec2fa50967549c82eb18ad83f63959e5 ""
+  "tech-jsample.tex" 1470061569 44649 d709b7e63dd4b79a1f08505a25777887 ""
   (generated)
-  "jsample.log"
-  "jsample.aux"
-  "jsample.dvi"
+  "tech-jsample.log"
+  "tech-jsample.aux"
+  "tech-jsample.dvi"
