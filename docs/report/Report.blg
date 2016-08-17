@@ -15,51 +15,51 @@ Repeated entry---line 525 of file ref.bib.bib
  : @article{Miyazaki2002
  :                      ,
 I'm skipping whatever remains of this entry
-Warning--to sort, need author or key in smoke3d
 Warning--empty journal in Ishikawa
 Warning--empty year in Ishikawa
+Warning--empty journal in Ishikawa2015
 Warning--empty journal in Miyazaki2002
 Warning--there's a number but no volume in Mizuno2003
-You've used 22 entries,
+You've used 16 entries,
             2620 wiz_defined-function locations,
-            729 strings with 7934 characters,
-and the built_in function-call counts, 9166 in all, are:
-= -- 795
-> -- 338
-< -- 35
-+ -- 140
-- -- 118
-* -- 530
-:= -- 1259
-add.period$ -- 65
-call.type$ -- 22
-change.case$ -- 125
+            692 strings with 7235 characters,
+and the built_in function-call counts, 6777 in all, are:
+= -- 575
+> -- 272
+< -- 27
++ -- 112
+- -- 96
+* -- 412
+:= -- 950
+add.period$ -- 47
+call.type$ -- 16
+change.case$ -- 96
 chr.to.int$ -- 0
-cite$ -- 27
-duplicate$ -- 487
-empty$ -- 733
-format.name$ -- 177
-if$ -- 2099
+cite$ -- 21
+duplicate$ -- 347
+empty$ -- 525
+format.name$ -- 144
+if$ -- 1531
 int.to.chr$ -- 0
-int.to.str$ -- 22
-missing$ -- 20
-newline$ -- 110
-num.names$ -- 42
-pop$ -- 190
+int.to.str$ -- 16
+missing$ -- 15
+newline$ -- 81
+num.names$ -- 32
+pop$ -- 141
 preamble$ -- 1
-purify$ -- 103
+purify$ -- 80
 quote$ -- 0
-skip$ -- 470
+skip$ -- 332
 stack$ -- 0
-substring$ -- 406
-swap$ -- 143
-text.length$ -- 35
+substring$ -- 286
+swap$ -- 97
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 88
+type$ -- 64
 warning$ -- 5
-while$ -- 76
-width$ -- 24
-write$ -- 231
-is.kanji.str$ -- 250
+while$ -- 56
+width$ -- 18
+write$ -- 167
+is.kanji.str$ -- 188
 (There were 3 error messages)

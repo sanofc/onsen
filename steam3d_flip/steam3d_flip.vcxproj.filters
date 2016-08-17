@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\write_bmp.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utility.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\solver.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\smoke3D.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\advect.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\perlin.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particle3d.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\write_bmp.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\advect.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\perlin.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\render.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\solver.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\types.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utility.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\smoke3D.h">
+      <Filter>header</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particle3d.h">
+      <Filter>header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build.bat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{3a15cdcf-5832-491a-998a-a8d4872254ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="header">
+      <UniqueIdentifier>{b00119e8-e0b5-410d-aa4b-45f40676f859}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

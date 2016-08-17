@@ -8,6 +8,7 @@
 
 #ifndef onsen_fluid2d_h
 #define onsen_fluid2d_h
+#define _USE_MATH_DEFINES
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
@@ -42,6 +43,7 @@
 using namespace std;
 
 static const double H = M/N;			//Cell Size
+static const double P_DENS = 0.001;
 
 #define START_FOR(X,Y)		for(int j=0;j<Y;j++){for(int i=0;i<X;i++){
 #define START_FOR_X			START_FOR(X+1,Y)

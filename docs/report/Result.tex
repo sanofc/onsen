@@ -1,71 +1,51 @@
 \section{結果}
 
-湯気のシミュレーションの結果を図\ref{result}に示す。
-実装では底面に一様な温度、水蒸気量を定義した結果である。
-レンダリングには\cite{smoke3d}にある独自のレンダリングモジュールを用いた。
-提案した手法を用いることで湯気の発生と消滅に近い映像を出力するできることを確認した。
-
-\begin{figure}[htbp]
- \begin{minipage}{0.33\hsize}
+\begin{figure*}[h]
   \begin{center}
-   \includegraphics[width=40mm]{img/render_20.bmp}
-  \end{center}
-  \label{fig:one}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_30.bmp}
- \end{center}
-  \label{fig:two}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_40.bmp}
- \end{center}
-  \label{fig:three}
- \end{minipage}
-\end{figure}
+    \begin{tabular}{c}
 
-\begin{figure}[htbp]
- \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=40mm]{img/render_50.bmp}
-  \end{center}
-  \label{fig:four}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_60.bmp}
- \end{center}
-  \label{fig:five}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_70.bmp}
- \end{center}
-  \label{fig:six}
- \end{minipage}
-\end{figure}
+      % 1
+      \begin{minipage}{0.25\hsize}
+        \begin{center}
+          \includegraphics[clip, width=4cm]{./render_20.eps}
+          \hspace{1.6cm} (1)20タイムステップ後
+        \end{center}
+      \end{minipage}
 
-\begin{figure}[htbp]
- \begin{minipage}{0.33\hsize}
-  \begin{center}
-   \includegraphics[width=40mm]{img/render_80.bmp}
+      % 2
+      \begin{minipage}{0.25\hsize}
+        \begin{center}
+          \includegraphics[clip, width=4cm]{./render_40.eps}
+          \hspace{1.6cm} (2)40タイムステップ後
+        \end{center}
+      \end{minipage}
+
+      % 3
+      \begin{minipage}{0.25\hsize}
+        \begin{center}
+          \includegraphics[clip, width=4cm]{./render_60.eps}
+          \hspace{1.6cm} (3)60タイムステップ後
+        \end{center}
+      \end{minipage}
+
+      % 4
+      \begin{minipage}{0.25\hsize}
+        \begin{center}
+          \includegraphics[clip, width=4cm]{./render_80.eps}
+          \hspace{1.6cm}  (4)80タイムステップ後 
+        \end{center}
+      \end{minipage}  
+
+    \end{tabular}
+    \caption{湯気のシミュレーションのレンダリング結果}
+    \label{result}
   \end{center}
-  \label{fig:seven}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_90.bmp}
- \end{center}
-  \label{fig:eight}
- \end{minipage}
- \begin{minipage}{0.33\hsize}
- \begin{center}
-  \includegraphics[width=40mm]{img/render_100.bmp}
- \end{center}
-  \label{fig:nine}
- \end{minipage}
- \caption{湯気のシミュレーション結果}
- \label{result}
-\end{figure}
+\end{figure*}
+
+
+湯気のシミュレーションのレンダリング結果を図(\ref{result})に示す.
+格子法と粒子法を用いることで,格子法のみでは実現が困難な水滴の発生位置による微細な湯気の動きを再現した.
+本レンダリング結果では湯気の発生分布が大きく2つに分かれている様子を確認した.
+レンダリングは格子ごとに湯気の密度を合計し,ボリュームレイキャスティング法により行った.
+シミュレーション空間は32×32×32の格子で,シミュレーションで発生した粒子数は3,000個から4,000個となった.
+計算時間はIntel Core i5-6200U 2.3GHzのCPUを用いて1タイムステップあたり3秒から4秒となった

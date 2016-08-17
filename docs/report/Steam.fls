@@ -1,10 +1,8 @@
-PWD /Users/sanohiroyuki/prog/onsen/docs/report
-INPUT /usr/local/texlive/2015/texmf.cnf
-INPUT /usr/local/texlive/2015/texmf-dist/web2c/texmf.cnf
-INPUT /usr/local/texlive/2015/texmf.cnf
-INPUT /usr/local/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt
-INPUT Steam.tex
+PWD C:/Users/sanofc/Documents/GitHub/onsen/docs/report
+INPUT c:/texlive/2015/texmf.cnf
+INPUT c:/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt
+INPUT ./Steam.tex
 OUTPUT Steam.log
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map
-INPUT /usr/local/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 OUTPUT Steam.dvi
+INPUT c:/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm

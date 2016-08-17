@@ -1,0 +1,16 @@
+# Fdb version 3
+["dvipdf"] 1470179423 "Intro.dvi" "Intro.pdf" "Intro" 1470179424
+  "Intro.dvi" 1470179423 6400 e549e996d12d41ba95851627c15d623c "latex"
+  (generated)
+  "Intro.pdf"
+["latex"] 1470179422 "Intro.tex" "Intro.dvi" "Intro" 1470179424
+  "./Intro.tex" 1470179419 5085 fc001b0d83978ddedc71a4ed0fc0c8c6 ""
+  "Intro.aux" 1470179422 9 a94a2480d3289e625eea47cd1b285758 ""
+  "Intro.tex" 1470179419 5085 fc001b0d83978ddedc71a4ed0fc0c8c6 ""
+  "c:/texlive/2015/texmf-dist/fonts/map/fontname/texfonts.map" 1456493844 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
+  "c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm" 1456493555 1328 c834bbb027764024c09d3d2bf908b5f0 ""
+  "c:/texlive/2015/texmf-var/web2c/eptex/platex.fmt" 1456495045 3997157 7d74e4299f5b8d49d65c13c24a59818d ""
+  "c:/texlive/2015/texmf.cnf" 1456494839 497 7277663fd190ea5a4fe922b182dc7be2 ""
+  (generated)
+  "Intro.dvi"
+  "Intro.log"

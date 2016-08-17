@@ -31,8 +31,8 @@ void scene(){
 		double noise  = 1;
 		noise = (noise < 0) ? 0 : noise;
 
-		double pv = noise * 1.0;//(double)(rand()%20)/100.0;
-		double pt = noise * 5.0;//(double)(rand()%100)/100.0;
+		double pv = noise * 1.5;//(double)(rand()%20)/100.0;
+		double pt = noise * 3.0;//(double)(rand()%100)/100.0;
 		//t[i][j] + 0.10 * pt;
 		//t[i][j] = 10.0 + 5.0 * pt;
 		//printf("%f",pv);

@@ -31,6 +31,16 @@ INPUT c:/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 INPUT c:/texlive/2015/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 INPUT c:/texlive/2015/texmf-dist/tex/latex/url/url.sty
 INPUT c:/texlive/2015/texmf-dist/tex/latex/url/url.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsmath.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amstext.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsgen.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsbsy.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
+INPUT c:/texlive/2015/texmf-dist/tex/latex/amsmath/amsopn.sty
 INPUT Report.aux
 INPUT Report.aux
 OUTPUT Report.aux
@@ -47,6 +57,9 @@ INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmmi6.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy10.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmsy6.tfm
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmex10.tfm
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/uptex/jis/upjisr-h.tfm
 INPUT Intro.tex
@@ -61,28 +74,25 @@ INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx12.tfm
 OUTPUT Report.dvi
 INPUT Steam.tex
 INPUT Steam.tex
-INPUT simulation.png
-INPUT extractbb -O simulation.png
+INPUT process.eps
+INPUT process.eps
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm
+INPUT simulation.eps
+INPUT simulation.eps
+INPUT overview.eps
+INPUT overview.eps
+INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmbx10.tfm
 INPUT Result.tex
 INPUT Result.tex
-INPUT img/render_20.bmp
-INPUT extractbb -O img/render_20.bmp
-INPUT img/render_30.bmp
-INPUT extractbb -O img/render_30.bmp
-INPUT img/render_40.bmp
-INPUT extractbb -O img/render_40.bmp
-INPUT img/render_50.bmp
-INPUT extractbb -O img/render_50.bmp
-INPUT img/render_60.bmp
-INPUT extractbb -O img/render_60.bmp
-INPUT img/render_70.bmp
-INPUT extractbb -O img/render_70.bmp
-INPUT img/render_80.bmp
-INPUT extractbb -O img/render_80.bmp
-INPUT img/render_90.bmp
-INPUT extractbb -O img/render_90.bmp
-INPUT img/render_100.bmp
-INPUT extractbb -O img/render_100.bmp
+INPUT ./render_20.eps
+INPUT ./render_20.eps
+INPUT ./render_40.eps
+INPUT ./render_40.eps
+INPUT ./render_60.eps
+INPUT ./render_60.eps
+INPUT ./render_80.eps
+INPUT ./render_80.eps
 INPUT Future.tex
 INPUT Future.tex
 INPUT Smoke.tex
@@ -95,6 +105,5 @@ INPUT End.tex
 INPUT End.tex
 INPUT Report.bbl
 INPUT Report.bbl
-INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmtt10.tfm
 INPUT c:/texlive/2015/texmf-dist/fonts/tfm/public/cm/cmti10.tfm
 INPUT Report.aux

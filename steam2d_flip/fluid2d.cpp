@@ -4,6 +4,7 @@
 
 double **qs,**qs_swap;					//Steam
 double **qv,**qv_swap;					//Vapor
+double **rs;							//Steam for Rendering
 double **f[2];							//Force (0:x,1:y)
 double **u, **v, **u_swap, **v_swap;	//Velocity
 double **d, **p, **o;					//Divergence,Pressure,Vorticity
@@ -29,6 +30,7 @@ void free2d(double **ptr, int n){
 void fluid2d::init(){
 	
 	if(!qs) qs = alloc2d(X,Y);
+	if (!rs) rs = alloc2d(X, Y);
 	if(!qs_swap) qs_swap = alloc2d(X,Y);
 	if(!qv) qv = alloc2d(X,Y);
 	if(!qv_swap) qv_swap = alloc2d(X,Y);
@@ -60,6 +62,7 @@ void fluid2d::init(){
 		o[i][j] = 0.0;
 		qs[i][j] = 0.0;
 		qs_swap[i][j] = 0.0;
+		rs[i][j] = 0.0;
 		qv[i][j] = 0.0;
 		qv_swap[i][j] = 0.0;
 		f[0][i][j] = 0.0;
@@ -94,6 +97,7 @@ void final(){
 	if(o)free(o);o=NULL;
 	if(qs)free(qs);qs=NULL;
 	if(qs_swap)free(qs_swap);qs_swap=NULL;
+	if (rs)free(rs);rs = NULL;
 	if(qv)free(qv);qv=NULL;
 	if(qv_swap)free(qv_swap);qv_swap=NULL;
 	if(f[0])free(f[0]);f[0]=NULL;
@@ -146,7 +150,7 @@ void add_particle(particle *p) {
 }
 
 double ** get_steam(){
-	return qs;
+	return rs;
 }
 
 double ** get_vapor(){
@@ -180,12 +184,15 @@ void enforce_boundary(){
 */
 	//Outflow boundary condition
 	START_FOR_X
-		if(i==0) u[i][j] = -0.01;
-		if(i==X) u[i][j] = 0.01;
+		if(i==0) u[i][j] = -0.001;
+		if(i==X) u[i][j] = 0.001;
 	END_FOR
 	START_FOR_Y
-		if(j==0) v[i][j] = 0.0;
-		if(j==Y) v[i][j] = 0.01;
+		if (j == 0) {
+			v[i][j] = 0.001;
+			u[i][j] = 0.0;
+		}
+		if(j==Y) v[i][j] = 0.001;
 	END_FOR
 
 	START_FOR_C
@@ -198,7 +205,7 @@ void enforce_boundary(){
 	
 	auto particle = particles.begin();
 	while(particle != particles.end()) {	
-		if ((*particle)->p[0] < 0.0 || (*particle)->p[0] > M || (*particle)->p[1] < 0.0 || (*particle)->p[1] > M) {
+		if ((*particle)->y() ==0 || (*particle)->p[0] < 0.0 || (*particle)->p[0] > M || (*particle)->p[1] < 0.0 || (*particle)->p[1] > M) {
 			particle = particles.erase(particle);
 		} else {
 			++particle;
@@ -223,13 +230,44 @@ void vorticity_confinement(){
 	};
 	double h_len = hypot(h[0],h[1]);
 	if(h_len > 0){
-		double e = 100;
+		double e = 70;
 		double n[2] = { h[0]/h_len, h[1]/h_len};
 		f[0][i][j] += e * H * (n[1] * o[i][j]);
 		f[1][i][j] += e * H * -(n[0] * o[i][j]);
 	}
 	END_FOR
 }
+
+
+void compute_buoyancy() {
+	START_FOR_C
+	//calculate buoyancy
+
+	double t_amb;
+	t_amb = A;
+	/*
+	if(j == 1) {
+	t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j+1))/3.0;
+	}else{
+	t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j-1)+g_ref(t,i,j+1))/4.0;
+	}*/
+	//t_amb = g_ref(t, i - 1, j) + g_ref(t, i + 1, j) / 2.0;
+
+	double buoy = K * /*qv[i][j] **/ ((t[i][j] - t_amb) / t_amb);// -G * qs[i][j];
+
+																 //double buoy  = G * s[i][j];
+																 //double noise_x = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
+	double noise_x = 0;
+	//double noise_y = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
+	double noise_y = 0;
+	add_force(i, j, 0 + noise_x, buoy + noise_y);
+
+	/*if (qs[i][j]>0.0001) {
+	printf("i%d j%d ds%f s%f v%f m%f t%f buoy%f noise_x%f noise_y%f\n", i, j, ds, qs[i][j], v[i][j], m, t[i][j], buoy, noise_x, noise_y);
+	}*/
+	END_FOR
+}
+
 
 void compute_force(){
 	START_FOR_C
@@ -294,7 +332,7 @@ void compute_grid_advection(){
 	
 	SWAP(u,u_swap);
 	SWAP(v,v_swap);
-	SWAP(qs,qs_swap);
+	//SWAP(qs,qs_swap);
 	SWAP(qv,qv_swap);
 	SWAP(t,t_swap);
 
@@ -308,20 +346,29 @@ void compute_particles_advection() {
 		p->p[1] += p->v(v);
 	}*/
 
-	double a = 20;
+	double b = 1.2;
+	double a = 4;
 
 	for (auto p : particles) {
 		double u_air = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
 		double v_air = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
 		double u_rel = p->u[0] - u_air;
 		double v_rel = p->u[1] - v_air;
+		/*
 		double drag = - a * std::abs(u_rel) * u_rel;
 		double lift = - a * std::abs(v_rel) * v_rel - G * 0.001;
 		drag = isnan(drag) ? 0 : drag;
 		lift = isnan(lift) ? 0 : lift;
+}
+		*/
+		double drag = -a * std::powf(std::abs(u_rel), b);
+		drag = std::signbit(u_rel) ? -drag : drag;
+		double lift = -a * std::powf(std::abs(v_rel), b);
+		lift = std::signbit(v_rel) ? -lift : lift - G * 0.1;
 		if (abs(drag) > 0) {
-		//	printf("%f %f\n", drag, lift);
+			//	printf("%f %f\n", drag, lift);
 		}
+
 		p->u[0] += drag;
 		p->u[1] += lift;
 		//p->u[0] = u_air;
@@ -362,12 +409,12 @@ void compute_diffuse(){
 	START_FOR_Y
 		v_swap[i][j] = g_ref(v,i,j) + a * (g_ref(v,i-1,j) + g_ref(v,i+1,j) + g_ref(v,i,j-1) + g_ref(v,i,j+1) - 4 * g_ref(v,i,j));
 	END_FOR
-*/
+	*/
+
 	double Dv = DT * 0.002;
 	double Dt = DT * 0.001;
 
 	//explicit method
-	
 	START_FOR_C
 		//printf("%f %f\n", g_ref(t,i,j),t_swap[i][j]);
 		t_swap[i][j] = g_ref(t,i,j) + Dt * (g_ref(t,i-1,j) + g_ref(t,i+1,j) + g_ref(t,i,j-1) + g_ref(t,i,j+1) - 4 * g_ref(t,i,j));
@@ -376,16 +423,15 @@ void compute_diffuse(){
 	START_FOR_C
 		qv_swap[i][j] = g_ref(qv,i,j) + Dv  * t_swap[i][j] * (g_ref(qv,i-1,j) + g_ref(qv,i+1,j) + g_ref(qv,i,j-1) + g_ref(qv,i,j+1) - 4 * g_ref(qv,i,j));
 	END_FOR
-	
 
+	/*
 	// implicit method
-	/*	
 	double a;
 	a = Dt * N * N;
 	lin_solve(t_swap,t,a,1.0+4.0 * a);
 	a = Dv * N * N;
 	lin_solve(qv_swap,qv,a,1.0+4.0*a);
-	*/	
+	*/
 
 	SWAP(qv,qv_swap);
 	SWAP(t,t_swap);
@@ -424,10 +470,6 @@ void initPostDisplay(){
 	END_FOR
 }
 
-void heat_transfer() {
-
-}
-
 double random() {
 	return (rand() % 100) / (double)100;
 }
@@ -460,8 +502,9 @@ void phase_transition() {
 	//Amount of steam generated by the phase transition
 	//double r = (double)(rand()%100)/100.0; //Phase transition ratio
 
-	double r = 0.7;
+	double r = 1.0;
 	double ds = r * (qv[i][j] - m);
+	double dv = 0.0;
 
 
 
@@ -478,111 +521,53 @@ void phase_transition() {
 		}
 	}else{
 	*/
-		vector<particle *> particles_in_grid;
 
-		for (auto particle : particles) {
-			if (particle->at(i, j)) {
-				particles_in_grid.push_back(particle);
-			}
-		}
-
-		//Number of particles in grid
-		int particles_num = particles_in_grid.size();
 		
 		
 		if (ds > 0) {
 			
-			double dens_in_particle = 0.001;
-
-			int create_particles_num = ds / dens_in_particle;
+			int create_particles_num = ds / P_DENS;
 
 			for (int k = 0; k < create_particles_num; k++) {
-				particle *p = new particle;
-				p->p[0] = (double)i / (double)X + random() * H;
-				p->p[1] = (double)j / (double)Y + random() * H;
-				p->u[0] = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
-				p->u[1] = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
-				p->dens = dens_in_particle;
-				add_particle(p);
+					particle *p = new particle;
+					p->p[0] = (double)i / (double)X + random() * H;
+					p->p[1] = (double)j / (double)Y + random() * H;
+					p->u[0] = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
+					p->u[1] = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
+					p->dens = P_DENS;
+					add_particle(p);
 			}
+			dv = -ds;
 		}
 		else if(ds < 0){
+			vector<particle *> particles_in_grid;
+
+			for (auto particle : particles) {
+				if (particle->at(i, j)) {
+					particles_in_grid.push_back(particle);
+				}
+			}
 			for (auto particle : particles_in_grid) {
-				particle->dens += ds;
-				if (particle->dens < 0) {
-					ds = particle->dens;
-					particle->dens = 0.0;
+				if (ds < 0) {
+					if (particle->dens <= abs(ds)) {
+						dv += particle->dens;
+						ds += particle->dens;
+						particle->dens = 0.0;
+					}else {
+						particle->dens += ds;
+						dv += ds;
+						ds = 0;
+					}
 				}
 			}
 		}
 		
 		//Steam density
-		qs[i][j] += ds;
-		qv[i][j] -= ds;
+		//qs[i][j] += dv;
+		qv[i][j] += dv;
+		//latent heat
+		t[i][j] += 0.005*dv;
 
-		/*
-		if (particles_num >= 10) {
-			for (auto particle : particles_in_grid) {
-				particle->dens += ds / (double)particles_num;
-			}
-		}else {
-			if (ds > 0) {
-				particle *p = new particle;
-				p->p[0] = (double)i / (double)X + random() * H;
-				p->p[1] = (double)j / (double)Y + random() * H;
-				p->u[0] = interpolation(u, p->p[0] * N, p->p[1] * N, X + 1, Y);
-				p->u[1] = interpolation(v, p->p[0] * N, p->p[1] * N, X, Y + 1);
-				p->dens = ds;
-				add_particle(p);
-			}
-			else {
-				for (auto particle : particles_in_grid) {
-					particle->dens += ds;
-					if (particle->dens > 0) {
-						break;
-					}
-					else {
-						ds = particle->dens;
-						particle->dens=0.0;
-					}
-				}
-			}
-		}*/
-		
-
-
-	//}
-
-
-
-	//latent heat
-	//t[i][j] += 0.01 * ds;
-
-
-	double t_amb;
-	t_amb = A;
-	/*
-	if(j == 1) {
-	t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j+1))/3.0;
-	}else{
-	t_amb = (g_ref(t,i-1,j)+g_ref(t,i+1,j)+g_ref(t,i,j-1)+g_ref(t,i,j+1))/4.0;
-	}*/
-	//t_amb = g_ref(t, i - 1, j) + g_ref(t, i + 1, j) / 2.0;
-
-	double buoy = K * ((t[i][j] - t_amb)/t_amb);// -G * qs[i][j];
-
-	//double buoy  = G * s[i][j];
-	//double noise_x = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
-	double noise_x = 0;
-	//double noise_y = ((double)(rand() % 100) / 100.0 - 0.5) * 0.0;
-	double noise_y = 0;
-	add_force(i, j, 0 + noise_x, buoy + noise_y);
-
-	/*if (qs[i][j]>0.0001) {
-		printf("i%d j%d ds%f s%f v%f m%f t%f buoy%f noise_x%f noise_y%f\n", i, j, ds, qs[i][j], v[i][j], m, t[i][j], buoy, noise_x, noise_y);
-	}*/
-
-	END_FOR
 
 	auto particle = particles.begin();
 	while (particle != particles.end()) {
@@ -596,45 +581,100 @@ void phase_transition() {
 			++particle;
 		}
 	}
+
+
+
+	END_FOR
 }
 
 
+/*!
+* Poly6カーネル関数値の計算(2D)
+* @param[in] r 距離
+* @param[in] h 有効半径
+* @return 関数値
+*/
+double KernelPoly6_2D(const double r, const double h)
+{
+	if (r >= 0.0 && r < h) {
+		double q = h*h - r*r;
+		double p = pow(h, 8);
+		double a = 4.0 /( M_PI*pow(h, 8));
+		return a * pow(q,3);
+	}
+	else {
+		return 0.0;
+	}
+}
+
+/*!
+* Poly6カーネル関数値の計算(3D)
+* @param[in] r 距離
+* @param[in] h 有効半径
+* @return 関数値
+*/
+double KernelPoly6_3D(const double &r, const double &h)
+{
+	if (r >= 0.0 && r < h) {
+		double q = h*h - r*r;
+		return 315.0 / (64.0*M_PI*pow(h, 9))*q*q*q;
+	}
+	else {
+		return 0.0;
+	}
+}
+
 void compute_particle_density() {
 
+	
 	START_FOR_C
 	qs[i][j] = 0.0;
-	qs_swap[i][j] = 0.0;
+	rs[i][j] = 0.0;
 	END_FOR
+	
 
 	for (auto particle : particles) {
 		int px = particle->x();
 		int py = particle->y();
-		
 		qs[px][py] += particle->dens;
+
+		double cx = H * px + H * 0.5;
+		double cy = H * py + H * 0.5;
+		double r = hypot(cx-particle->p[0],cy-particle->p[1]);
+		double h = hypot(H, H) * 0.5;
+		double k = P_DENS * KernelPoly6_2D(r, h);
+		rs[px][py] += k;
+
 	}
 
+	
+	
+
 }
+
 
 void compute_step(){
 
 	scene();
 
 	//interaction between grid and particles
-	heat_transfer();
+	//heat_transfer();
+	compute_particle_density();
 	phase_transition();
 
 	//grid
 	vorticity_confinement();
+	compute_buoyancy();
 	compute_force();
-	compute_diffuse();
 	compute_divergence();
 	compute_pressure();
 	subtract_pressure();
-
 	compute_grid_advection();
+	compute_diffuse();
+
+	//particle
 	compute_particles_advection();
 	enforce_boundary();
-	compute_particle_density();
 }
 
 

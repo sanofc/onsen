@@ -1,9 +1,5 @@
 \begin{thebibliography}{10}
 
-\bibitem{smoke3d}
-smoke3d.
-\newblock \url{https://code.google.com/archive/p/smoke3d/}.
-
 \bibitem{Dobashi2000}
 Yoshinori Dobashi, Kazufumi Kaneda, Hideo Yamashita, Tsuyoshi Okita, and
   Tomoyuki Nishita.
@@ -15,17 +11,6 @@ Ronald Fedkiw, Jos Stam, and Henrik~Wann Jensen.
 \newblock Visual simulation of smoke.
 \newblock In {\em Proceedings of the 28th Annual Conference on Computer
   Graphics and Interactive Techniques}, SIGGRAPH '01, pp. 15--22. ACM, 2001.
-
-\bibitem{Feldman2003}
-Bryan~E. Feldman, James~F. O'Brien, and Okan Arikan.
-\newblock {Animating suspended particle explosions}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~22, No.~3, p. 708, 2003.
-
-\bibitem{Foster2001}
-Nick Foster and Ronald Fedkiw.
-\newblock Practical animation of liquids.
-\newblock In {\em Proceedings of the 28th annual conference on Computer
-  graphics and interactive techniques}, pp. 23--30. ACM, 2001.
 
 \bibitem{Foster1996}
 Nick Foster and Dimitri Metaxas.
@@ -49,10 +34,11 @@ Tomokazu Ishikawa and Yonghao Y U~E Member.
 \newblock {Visual Simulation of Solar Photosphere Based on Magnetohydrodynamics
   and Quantum Theory}.
 
-\bibitem{Kim2005}
-ByungMoon Kim, Yingjie Liu, Ignacio Llamas, and Jarek Rossignac.
-\newblock {FlowFixer: Using BFECC for fluid simulation}.
-\newblock {\em Natural Phenomena}, pp. 51--56, 2005.
+\bibitem{Ishikawa2015}
+Tomokazu Ishikawa, Yonghao Y U~E Member, Taichi~Watanabe Member, and
+  Kei~Iwasaki Member.
+\newblock {Visual Simulation of Glazed Frost Using Hybrid Heat Calculation}.
+\newblock Vol.~3, No.~2, pp. 136--142, 2015.
 
 \bibitem{Kim2008}
 Theodore Kim, Nils Th\"{u}rey, Doug James, and Markus Gross.
@@ -90,32 +76,16 @@ Ryoichi Mizuno, Yoshinori Dobashi, and Tomoyuki Nishita.
 \newblock {\em Journal of Information Science and Engineering}, Vol.~20, No.~2,
   pp. 219--232, 2004.
 
-\bibitem{Nguyen2002}
-Duc~Quang Nguyen, Ronald Fedkiw, and Henrik~Wann Jensen.
-\newblock {Physically based modeling and animation of fire}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~21, No.~3, 2002.
-
 \bibitem{Nielsen2013}
 MB~Nielsen and Ole \O~sterby.
 \newblock {A Two-Continua Approach to Eulerian Simulation of Water Spray}.
 \newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
 
-\bibitem{Selle2008}
-Andrew Selle, Ronald Fedkiw, Byungmoon Kim, Yingjie Liu, and Jarek Rossignac.
-\newblock {An unconditionally stable MacCormack method}.
-\newblock {\em Journal of Scientific Computing}, Vol.~35, No. 2-3, pp.
-  350--371, 2008.
-
-\bibitem{Stam1999}
-Jos Stam.
-\newblock {Stable Fluids}.
-\newblock {\em Proceedings of the 26th annual conference on Computer graphics
-  and interactive techniques}, pp. 121--128, 1999.
-
-\bibitem{Zhu2005}
-Yongning Zhu and Robert Bridson.
-\newblock {Animating sand as a fluid}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~24, No.~3, p. 965, 2005.
+\bibitem{Stomakhin2013}
+Alexey Stomakhin, Craig Schroeder, Lawrence Chai, Joseph Teran, and Andrew
+  Selle.
+\newblock {A material point method for snow simulation}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
 
 \bibitem{Fujisawa2008}
 藤澤誠.

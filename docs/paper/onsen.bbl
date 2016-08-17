@@ -1,0 +1,63 @@
+\begin{thebibliography}{10}
+
+\bibitem{Fedkiw2001}
+Fedkiw, R., Stam, J. and Jensen, H.~W.: Visual Simulation of Smoke, {\em
+  Proceedings of the 28th Annual Conference on Computer Graphics and
+  Interactive Techniques}, SIGGRAPH '01, ACM, pp.\ 15--22 (online),
+  \doi{10.1145/383259.383260} (2001).
+
+\bibitem{Dobashi2000}
+Dobashi, Y., Kaneda, K., Yamashita, H., Okita, T. and Nishita, T.: {A Simple ,
+  Efficient Method for Realistic Animation of Clouds}, {\em SIGGRAPH} (2000).
+
+\bibitem{Miyazaki2001}
+Miyazaki, R., Yoshida, S., Dobashi, Y. and Nishita, T.: {A method for modeling
+  clouds based on atmospheric fluid dynamics}, {\em Proceedings Ninth Pacific
+  Conference on Computer Graphics and Applications. Pacific Graphics 2001},
+  (online), \doi{10.1109/PCCGA.2001.962893} (2001).
+
+\bibitem{Miyazaki2002}
+Miyazaki, R., Dobashi, Y. and Nishita, T.: {Simulation of Cumuliform Clouds
+  Based on Computational Fluid Dynamics} (2002).
+
+\bibitem{Mizuno2003}
+Mizuno, R., Dobashi, Y., Chen, B.-Y. C. B.-Y. and Nishita, T.: {Physics
+  motivated modeling of volcanic clouds as a two fluids model}, {\em 11th
+  Pacific Conference onComputer Graphics and Applications, 2003. Proceedings.},
+   No.~August, pp.\ 2--6 (online), \doi{10.1109/PCCGA.2003.1238291} (2003).
+
+\bibitem{Mizuno2004}
+Mizuno, R., Dobashi, Y. and Nishita, T.: {Modeling of volcanic clouds using
+  CML}, {\em Journal of Information Science and Engineering},  Vol.~20, No.~2,
+  pp.\ 219--232 (2004).
+
+\bibitem{Nielsen2013}
+Nielsen, M. and \O~sterby, O.: {A Two-Continua Approach to Eulerian Simulation
+  of Water Spray}, {\em ACM Transactions on Graphics},  Vol.~32, No.~4, p.~1
+  (online), \doi{10.1145/2461912.2461918} (2013).
+
+\bibitem{Mihalef2009}
+Mihalef, V., Metaxas, D. and Sussman, M.: {Simulation of two-phase flow with
+  sub-scale droplet and bubble effects}, {\em Computer Graphics Forum},
+  Vol.~28, No.~2, pp.\ 229--238 (online),
+  \doi{10.1111/j.1467-8659.2009.01362.x} (2009).
+
+\bibitem{Fujisawa2008}
+藤澤誠\：コンピュータグラフィックスにおける物質の三態シミュレーションに関する研究
+  (2008).
+
+\bibitem{Foster1997}
+Foster, N. and Metaxas, D.: {Modeling the Motion of a Hot, Turbulent Gas}, {\em
+  SIGGRAPH} (1997).
+
+\bibitem{Ishikawa2015}
+Ishikawa, T., Member, Y. Y. U.~E., Member, T.~W. and Member, K.~I.: {Visual
+  Simulation of Glazed Frost Using Hybrid Heat Calculation},  Vol.~3, No.~2,
+  pp.\ 136--142 (2015).
+
+\bibitem{Stomakhin2013}
+Stomakhin, A., Schroeder, C., Chai, L., Teran, J. and Selle, A.: {A material
+  point method for snow simulation}, {\em ACM Transactions on Graphics},
+  Vol.~32, No.~4, p.~1 (online), \doi{10.1145/2461912.2461948} (2013).
+
+\end{thebibliography}
