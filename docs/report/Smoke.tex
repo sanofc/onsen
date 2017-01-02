@@ -1,14 +1,14 @@
-\section{Visual Simulation of Smoke 解説}
+\appendix
+\chapter{流体力学計算}
 \label{smoke}
-Visual Simulation of Smoke\cite{Fedkiw2001}を解説する.
-物理シミュレーションの実装に必要なアルゴリズムを中心に説明する.
-\subsection{概要}
-煙のようなガスをシミュレートするためのモデルを提案する.
-煙の速度を非圧縮性のオイラーの運動方程式でモデル化する.
+本論文で用いた流体シミュレーションの計算手法について説明する。
+これは煙の可視化シミュレーションするためのVisual Simulation of Smoke\cite{Fedkiw2001}をベースとしている。
+\section{概要}
+流体は非圧縮性のオイラーの運動方程式でモデル化する.
 非圧縮性のオイラーの運動方程式はセミラグランジュ法と圧力のポアソン方程式を用いて解く.
 数値拡散を減らす渦度強制(Vorticity Confinment)の手法を提供する.
 このモデルは安定的,高速かつ数値拡散を起こすことがない.
-\subsection{方程式}
+\section{方程式}
 気体のモデルとして非粘性,非圧縮,粘度が一定の気体を仮定する.
 粘性,圧縮性は気体のシミュレーションでは無視できる.
 煙の速度 $\upsilon = (u,v,w)$は非圧縮のオイラーの運動方程式によって与えられる.
@@ -18,10 +18,10 @@ Visual Simulation of Smoke\cite{Fedkiw2001}を解説する.
 \end{equation}
 \begin{equation}
 \label{euler}
-\frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \nabla p + f
+\frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \frac{1}{\rho}\nabla p + f
 \end{equation}
 式(\ref{continuity})は質量保存,式(\ref{euler})は運動量保存を表す.
-$p$は気体の圧力,$f$は外力を表す.
+$\rho$は流体の密度,$p$は気体の圧力,$f$は外力を表す.
 式(\ref{euler})の右辺は左から移流項,圧縮項,外力項と呼ぶ.
 
 これらの式を2段階で解く.
@@ -35,9 +35,9 @@ $p$は気体の圧力,$f$は外力を表す.
 これはノイマン境界条件にしたがった以下のポアソン方程式から圧力を計算することに等しい.
 \begin{equation}
 \label{poisson}
-\nabla^2 p = \frac{1}{\Delta t} \nabla \cdot \upsilon^*
+\nabla \left( \frac{1}{\rho} \nabla p \right) = \frac{1}{\Delta t} \nabla \cdot \upsilon^*
 \end{equation}
-式(\ref{poisson})の導出をする.まず最終的な速度場を$\upsilon$とした場合に$\frac{\upsilon - \upsilon^* }{\Delta t} = - \nabla p$となる.これに両辺の発散をとる($\nabla$を掛ける)と$\frac{\nabla \cdot \upsilon - \nabla \cdot \upsilon^*}{\nabla t} = - \nabla^2 p$ となる.式(\ref{continuity})$\nabla \cdot \upsilon = 0$から$- \frac{\nabla \cdot \upsilon^*}{\nabla t} = - \nabla^2 p$となりこれを式変形することで式(\ref{poisson})が導出できる.
+式(\ref{poisson})の導出をする.まず最終的な速度場を$\upsilon^{**}$とした場合に$\frac{\upsilon - \upsilon^{**} }{\Delta t} = - \frac{1}{\rho} \nabla p$となる.これに両辺の発散をとる($\nabla$を掛ける)と$\frac{\nabla \cdot \upsilon - \nabla \cdot \upsilon^*}{\Delta t} = - \nabla \left( \frac{1}{\rho} \nabla p \right)$となる.式(\ref{continuity})$\nabla \cdot \upsilon = 0$から$- \frac{\nabla \cdot \upsilon^*}{\Delta t} = - \nabla \left( \frac{1}{\rho} \nabla p \right)$となりこれを式変形することで式(\ref{poisson})が導出できる.
 
 中間速度場から圧力の勾配を引くと非圧縮性を満たす速度となる.
 \begin{equation}
@@ -82,7 +82,7 @@ N=\frac{\eta}{|\eta|}\;(\eta=\nabla|\omega|)
 f_{conf}=\epsilon h (N \times \omega)
 \end{equation}
 $\epsilon > 0$は追加する渦のスケール,$h$は格子幅を表す.
-\subsection{実装}
+\section{実装}
 
 空間の差分化は同一の大きさの格子に分割する格子法(図\ref{grid})を用いる.
 格子の中心には煙の密度,温度,外力が定義されるのに対して,格子の面には速度が定義される.

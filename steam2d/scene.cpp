@@ -10,7 +10,7 @@
 
 #include <stdlib.h>
 
-#define K					0.00 //Buoyancy Coefficient
+#define K					0.001 //Buoyancy Coefficient
 #define G					0.0001			//Gravity Coefficient
 
 
@@ -32,7 +32,7 @@ void scene(){
 		noise = (noise < 0) ? 0 : noise;
 
 		double pv = noise * 1.5;//(double)(rand()%20)/100.0;
-		double pt = noise * 3.0;//(double)(rand()%100)/100.0;
+		double pt = noise * 2.0;//(double)(rand()%100)/100.0;
 		//t[i][j] + 0.10 * pt;
 		//t[i][j] = 10.0 + 5.0 * pt;
 		//printf("%f",pv);
@@ -46,7 +46,7 @@ void scene(){
 	if ( j == 0 ) continue;
 
 	//Saturation Vapor Content
-	double a = 5.0;
+	double a = 15.0;
 	double b = 30;
 	double c = -2.0;
 	double m = MIN(a * exp(-b / ((t[i][j]) + c)),v[i][j]+s[i][j]);

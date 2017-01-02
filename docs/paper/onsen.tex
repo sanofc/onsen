@@ -16,8 +16,6 @@
 \def\|{\verb|}
 
 
-
-
 \setcounter{巻数}{57}
 %\setcounter{号数}{1}
 %\setcounter{page}{1}
@@ -102,7 +100,6 @@ CGにおいて粒子法と格子法を組み合わせることによる手法は
 水滴から水蒸気の間の相転移は宮崎ら\cite{Miyazaki2001}\cite{Miyazaki2002}による飽和水蒸気量を利用するモデルを格子法と粒子法を用いる手法へ適用する.
 
 \section{湯気のシミュレーション}
-
 \subsection{湯気の発生と消滅のプロセス}
 \begin{figure}[h]
 \centering
@@ -132,10 +129,10 @@ CGにおいて粒子法と格子法を組み合わせることによる手法は
 \label{continuity}
 \nabla \cdot \upsilon = 0
 \end{equation}
-\begin{equation}
-\label{euler}
-\frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \nabla p + B + f
-\end{equation}
+  \begin{equation}
+  \label{euler}
+  \frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \nabla p + B + f
+  \end{equation}
 
 $p$は圧力,$B$は浮力,$f$は風などによる外力を表す.浮力$B$はブシネスク近似より式(\ref{buoyancy})で定義する.
 \begin{equation}
@@ -147,7 +144,7 @@ $k_{b}$は浮力の係数,$T$は流体の温度,$T_{a}$は環境温度,$z$は上
 湯気の密度$q_{c}$と水蒸気$q_{v}$の密度は次式で定義する.
 \begin{equation}
 \label{steam}
-\frac{\partial q_{c}}{\partial t} = -(\upsilon \cdot \nabla)q_{s} + C_{s}
+\frac{\partial q_{c}}{\partial t} = -(\upsilon \cdot \nabla)q_{c} + C_{s}
 \end{equation}
 \begin{equation}
 \label{vapor}

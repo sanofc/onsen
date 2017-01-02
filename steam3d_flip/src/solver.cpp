@@ -37,11 +37,12 @@ static void compute_Ax( FLOAT ***x, FLOAT ***w, FLOAT ***ans, int n ) {
 // Gauss-Seidel Iteration
 static void gaussseidel( FLOAT ***x, FLOAT ***b, FLOAT ***w, int n, int t ) {
 	FLOAT h2 = 1.0/(n*n);
+	//FLOAT density = 10.0;//density
 	for( int k=0; k<t; k++ ) {
 		FOR_EVERY_COMP(n) {
 			x[i][j][k] = (x_ref(x,i,j,k,i+1,j,k,w,n)+x_ref(x,i,j,k,i-1,j,k,w,n)+
 						  x_ref(x,i,j,k,i,j+1,k,w,n)+x_ref(x,i,j,k,i,j-1,k,w,n)+
-						  x_ref(x,i,j,k,i,j,k+1,w,n)+x_ref(x,i,j,k,i,j,k-1,w,n)-h2*b[i][j][k]) / 6.0;
+						  x_ref(x,i,j,k,i,j,k+1,w,n)+x_ref(x,i,j,k,i,j,k-1,w,n)-1.0*h2*b[i][j][k]) / 6.0;
 		} END_FOR
 	}
 }
@@ -175,6 +176,7 @@ static void mgv( FLOAT ***x, FLOAT ***b, FLOAT ***w, int n, int recr=0 ) {
 }
 
 FLOAT solver::solve( FLOAT ***x, FLOAT ***b, FLOAT ***w, int n ) {
+
 	static FLOAT ***r = alloc3D(n,n,n);
 	clear(x,n);
 	mgv(x,b,w,n);

@@ -26,7 +26,7 @@
 #define Y					64			//Cell Numbers for Y Direction
 #define W					512			//Window Size
 #define T					200			//Iteration Numbers
-#define V					0.1			//Viscocity
+#define V					0.5			//Viscocity
 #define A					10			//Ambient Temperature
 static const double H = M/N;			//Cell Size
 

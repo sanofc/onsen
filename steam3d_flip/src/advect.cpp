@@ -55,9 +55,9 @@ void advect::advect( FLOAT ****u, FLOAT ***c, FLOAT ***s, FLOAT ***t, int N, FLO
 	} END_FOR
 	
 	FOR_EVERY_CELL {
-		uc[0][i][j][k] = 0.5*u[0][i][j][k]+0.5*u[0][i+1][j][k];
-		uc[1][i][j][k] = 0.5*u[1][i][j][k]+0.5*u[1][i][j+1][k];
-		uc[2][i][j][k] = 0.5*u[2][i][j][k]+0.5*u[2][i][j][k+1];
+		uc[0][i][j][k] = 0.5*u[0][i][j][k] + 0.5*u[0][i + 1][j][k];
+		uc[1][i][j][k] = 0.5*u[1][i][j][k] + 0.5*u[1][i][j + 1][k];
+		uc[2][i][j][k] = 0.5*u[2][i][j][k] + 0.5*u[2][i][j][k + 1];
 	} END_FOR
 	
 	// BackTrace X Flow

@@ -104,12 +104,20 @@ double ** get_v(){
 	return v;
 }
 
-
+/*
 double g_ref(double **g, int i, int j){ 
 	double ref;
 	if(g==p)		ref = p[CLIP(i,0,X-1)][CLIP(j,0,Y-1)];
 	else if(g==u)	ref = u[CLIP(i,0,X)][CLIP(j,0,Y-1)];
 	else if(g==v)	ref = v[CLIP(i,0,X-1)][CLIP(j,0,Y)];
+	return ref;
+}
+*/
+double g_ref(double **g, int i, int j) {
+	double ref;
+	if (g == p || g == t || g == t_swap || g == qs || g == qs_swap) ref = g[CLIP(i, 0, X - 1)][CLIP(j, 0, Y - 1)];
+	else if (g == u)	 ref = g[CLIP(i, 0, X)][CLIP(j, 0, Y - 1)];
+	else if (g == v)    ref = g[CLIP(i, 0, X - 1)][CLIP(j, 0, Y)];
 	return ref;
 }
 
@@ -121,15 +129,16 @@ void enforce_boundary(){
 	START_FOR_Y
 		if(j==0 || j==Y) v[i][j] = 0;
 	END_FOR
-*/
+
 	//Outflow boundary condition
 	START_FOR_X
-		if(i==0) u[i][j] = 0.1;
-		if(i==X) u[i][j] = -0.1;
+		if(i==0) u[i][j] = u[X-1][j];
+		if(i==X) u[i][j] = u[X-1][j];
 	END_FOR
+	*/
 	START_FOR_Y
-		if(j==0) v[i][j] = 0;
-		if(j==Y) v[i][j] = 0.1; 
+		if(j==0) v[i][j] = 0.00;
+		if(j==Y) v[i][j] = 0.001; 
 	END_FOR
 }
 
@@ -183,7 +192,9 @@ double interpolation(double **src, double x, double y, int width, int height){
 
 void semiLagragian(double **src, double **u, double **v,int width, int height, double **out){
 	START_FOR(width,height)
-		out[i][j]=interpolation(src, i-N*u[i][j]*DT, j-N*v[i][j]*DT, width, height);
+		//if (j != 0) {
+			out[i][j] = interpolation(src, i - N*u[i][j] * DT, j - N*v[i][j] * DT, width, height);
+		//}
 	END_FOR
 }
 
@@ -234,15 +245,13 @@ void compute_diffuse(){
 		v_swap[i][j] = g_ref(v,i,j) + a * (g_ref(v,i-1,j) + g_ref(v,i+1,j) + g_ref(v,i,j-1) + g_ref(v,i,j+1) - 4 * g_ref(v,i,j));
 	END_FOR
 
-	/*
 	START_FOR_C
 		qs_swap[i][j] = g_ref(qs,i,j) + a * (g_ref(qs,i-1,j) + g_ref(qs,i+1,j) + g_ref(qs,i,j-1) + g_ref(qs,i,j+1) - 4 * g_ref(qs,i,j));
 	END_FOR
-	*/
 
 	SWAP(u,u_swap);
 	SWAP(v,v_swap);
-	//SWAP(qs,qs_swap);
+	SWAP(qs,qs_swap);
 
 }
 
@@ -256,7 +265,11 @@ void gausseidel(double **x, double **b){
 	double h2 = H * H;
 	for(int k=0; k < T; k++){
 		START_FOR_C
-			x[i][j] = ((g_ref(x,i+1,j)+g_ref(x,i-1,j)+g_ref(x,i,j+1)+g_ref(x,i, j-1))-h2*b[i][j])/4;
+			//if (j == 0 && i > X/4 && i < X-X/4) {
+			//	x[i][j] = 0.000;
+			//}else {
+				x[i][j] = ((g_ref(x, i + 1, j) + g_ref(x, i - 1, j) + g_ref(x, i, j + 1) + g_ref(x, i, j - 1)) - h2*b[i][j]) / 4;
+			//}
 		END_FOR
 	}
 }
@@ -289,15 +302,23 @@ void initPostDisplay(){
 }
 
 void compute_step(){
-	scene();
 	enforce_boundary();
+	scene();
+	
+
 	//vorticity_confinement();
+	
 	compute_force();
+	
 	compute_advection();
+	
 	compute_diffuse();
+	
 	compute_divergence();
 	compute_pressure();
 	subtract_pressure();
+	
+	
 }
 
 

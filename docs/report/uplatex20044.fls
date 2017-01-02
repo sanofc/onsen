@@ -1,0 +1,4 @@
+PWD C:/Users/sanofc/Documents/GitHub/onsen/docs/report
+INPUT c:/texlive/2015/texmf.cnf
+INPUT c:/texlive/2015/texmf-var/web2c/euptex/uplatex.fmt
+INPUT ./Report.tex

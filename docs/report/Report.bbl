@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{desbrun}
+Mathieu Desbrun.
+\newblock {Smoothed Particles : A new paradigm for animating highly deformable
+  bodies}.
+
 \bibitem{Dobashi2000}
 Yoshinori Dobashi, Kazufumi Kaneda, Hideo Yamashita, Tsuyoshi Okita, and
   Tomoyuki Nishita.
@@ -12,38 +17,16 @@ Ronald Fedkiw, Jos Stam, and Henrik~Wann Jensen.
 \newblock In {\em Proceedings of the 28th Annual Conference on Computer
   Graphics and Interactive Techniques}, SIGGRAPH '01, pp. 15--22. ACM, 2001.
 
-\bibitem{Foster1996}
-Nick Foster and Dimitri Metaxas.
-\newblock {Realistic Animation of Liquids}.
-\newblock {\em Graphical Models and Image Processing}, Vol.~58, No.~5, pp.
-  471--483, 1996.
-
 \bibitem{Foster1997}
 Nick Foster and Dimitris Metaxas.
 \newblock {Modeling the Motion of a Hot, Turbulent Gas}.
 \newblock {\em SIGGRAPH}, 1997.
-
-\bibitem{Gardner1985}
-Geoffrey~Y. Gardner.
-\newblock {Visual simulation of clouds}.
-\newblock {\em ACM SIGGRAPH Computer Graphics}, Vol.~19, No.~3, pp. 297--304,
-  1985.
-
-\bibitem{Ishikawa}
-Tomokazu Ishikawa and Yonghao Y U~E Member.
-\newblock {Visual Simulation of Solar Photosphere Based on Magnetohydrodynamics
-  and Quantum Theory}.
 
 \bibitem{Ishikawa2015}
 Tomokazu Ishikawa, Yonghao Y U~E Member, Taichi~Watanabe Member, and
   Kei~Iwasaki Member.
 \newblock {Visual Simulation of Glazed Frost Using Hybrid Heat Calculation}.
 \newblock Vol.~3, No.~2, pp. 136--142, 2015.
-
-\bibitem{Kim2008}
-Theodore Kim, Nils Th\"{u}rey, Doug James, and Markus Gross.
-\newblock {Wavelet turbulence for fluid simulation}.
-\newblock {\em ACM Transactions on Graphics}, Vol.~27, No.~3, p.~1, 2008.
 
 \bibitem{Mihalef2009}
 Viorel Mihalef, Dimitris Metaxas, and Mark Sussman.
@@ -76,16 +59,33 @@ Ryoichi Mizuno, Yoshinori Dobashi, and Tomoyuki Nishita.
 \newblock {\em Journal of Information Science and Engineering}, Vol.~20, No.~2,
   pp. 219--232, 2004.
 
+\bibitem{Muller2003}
+Matthias M{\"{u}}ller, David Charypar, and Markus Gross.
+\newblock {Particle-Based Fluid Simulation for Interactive Applications}.
+\newblock {\em Proceedings of the 2003 ACM SIGGRAPH/Eurographics symposium on
+  Computer animation}, No.~5, pp. 154--159, 2003.
+
 \bibitem{Nielsen2013}
 MB~Nielsen and Ole \O~sterby.
 \newblock {A Two-Continua Approach to Eulerian Simulation of Water Spray}.
 \newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
+
+\bibitem{Stam1999}
+Jos Stam.
+\newblock {Stable Fluids}.
+\newblock {\em Proceedings of the 26th annual conference on Computer graphics
+  and interactive techniques}, pp. 121--128, 1999.
 
 \bibitem{Stomakhin2013}
 Alexey Stomakhin, Craig Schroeder, Lawrence Chai, Joseph Teran, and Andrew
   Selle.
 \newblock {A material point method for snow simulation}.
 \newblock {\em ACM Transactions on Graphics}, Vol.~32, No.~4, p.~1, 2013.
+
+\bibitem{Zhu2005}
+Yongning Zhu and Robert Bridson.
+\newblock {Animating sand as a fluid}.
+\newblock {\em ACM Transactions on Graphics}, Vol.~24, No.~3, p. 965, 2005.
 
 \bibitem{Fujisawa2008}
 藤澤誠.

@@ -1,3 +1,4 @@
+\chapter{提案手法}
 \section{湯気のシミュレーション}
 
 \subsection{湯気の発生と消滅のプロセス}
@@ -31,10 +32,10 @@
 \end{equation}
 \begin{equation}
 \label{euler}
-\frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \nabla p + B + f
+\frac{\partial \upsilon}{\partial t} = -(\upsilon \cdot \nabla)\upsilon - \frac{1}{\rho} \nabla p + B + f
 \end{equation}
 
-$p$は圧力,$B$は浮力,$f$は風などによる外力を表す.浮力$B$はブシネスク近似より式(\ref{buoyancy})で定義する.
+$\rho$は流体密度,	$p$は圧力,$B$は浮力,$f$は風などによる外力を表す.浮力$B$はブシネスク近似より式(\ref{buoyancy})で定義する.
 \begin{equation}
 \label{buoyancy}
 B=k_{b}\frac{T-T_{a}}{T_{a}}z
@@ -119,6 +120,8 @@ $F_{drag}$は抗力,$C_{D}$は抗力を決定するためのパラメータ,$\be
 水蒸気源と熱源は空間の底面から発生し,発生量の分布はユーザにより定義する.
 湯気は粒子により表現し粒子には格子空間上の位置,速度,質量が格納される.
 粒子は質量が一定で粒子同士の衝突,粒子から格子の流体の速度,温度に対する影響はないと仮定する.
+
+境界条件は底面は固定の水面と仮定し速度を0と指定する固定境界条件とし,上面は水滴が上空へ散布されることを仮定し上向きの速度を固定値で指定することで流出境界条件とする.
 
 図\ref{overview}に本シミュレーション空間上での1タイムステップ中の処理の流れを示す.
 

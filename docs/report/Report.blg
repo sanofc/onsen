@@ -2,64 +2,65 @@ This is upBibTeX, Version 0.99d-j0.33-u1.20 (utf8.uptex) (TeX Live 2015/W32TeX)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: Report.aux
 The style file: jplain.bst
-Database file #1: ref.bib.bib
-Repeated entry---line 401 of file ref.bib.bib
+Database file #1: ref.bib
+Repeated entry---line 401 of file ref.bib
  : @article{Mizuno2003
  :                    ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 425 of file ref.bib.bib
+Repeated entry---line 425 of file ref.bib
  : @article{Nielsen2013
  :                     ,
 I'm skipping whatever remains of this entry
-Repeated entry---line 525 of file ref.bib.bib
+Repeated entry---line 525 of file ref.bib
  : @article{Miyazaki2002
  :                      ,
 I'm skipping whatever remains of this entry
-Warning--empty journal in Ishikawa
-Warning--empty year in Ishikawa
+Warning--empty journal in desbrun
+Warning--empty year in desbrun
 Warning--empty journal in Ishikawa2015
 Warning--empty journal in Miyazaki2002
 Warning--there's a number but no volume in Mizuno2003
+Warning--there's a number but no volume in Muller2003
 You've used 16 entries,
             2620 wiz_defined-function locations,
-            692 strings with 7235 characters,
-and the built_in function-call counts, 6777 in all, are:
+            690 strings with 7260 characters,
+and the built_in function-call counts, 6710 in all, are:
 = -- 575
-> -- 272
-< -- 27
-+ -- 112
-- -- 96
-* -- 412
-:= -- 950
+> -- 262
+< -- 24
++ -- 108
+- -- 92
+* -- 394
+:= -- 940
 add.period$ -- 47
 call.type$ -- 16
-change.case$ -- 96
+change.case$ -- 94
 chr.to.int$ -- 0
-cite$ -- 21
-duplicate$ -- 347
+cite$ -- 22
+duplicate$ -- 348
 empty$ -- 525
-format.name$ -- 144
-if$ -- 1531
+format.name$ -- 138
+if$ -- 1520
 int.to.chr$ -- 0
 int.to.str$ -- 16
 missing$ -- 15
 newline$ -- 81
 num.names$ -- 32
-pop$ -- 141
+pop$ -- 140
 preamble$ -- 1
-purify$ -- 80
+purify$ -- 78
 quote$ -- 0
-skip$ -- 332
+skip$ -- 337
 stack$ -- 0
-substring$ -- 286
-swap$ -- 97
-text.length$ -- 27
+substring$ -- 290
+swap$ -- 98
+text.length$ -- 24
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 64
-warning$ -- 5
+warning$ -- 6
 while$ -- 56
 width$ -- 18
 write$ -- 167
-is.kanji.str$ -- 188
+is.kanji.str$ -- 182
 (There were 3 error messages)

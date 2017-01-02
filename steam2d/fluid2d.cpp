@@ -157,12 +157,12 @@ void enforce_boundary(){
 */
 	//Outflow boundary condition
 	START_FOR_X
-		if(i==0) u[i][j] = -0.01;
-		if(i==X) u[i][j] = 0.01;
+		if(i==0) u[i][j] = -0.001;
+		if(i==X) u[i][j] = 0.001;
 	END_FOR
 	START_FOR_Y
-		if(j==0) v[i][j] = 0.0;
-		if(j==Y) v[i][j] = 0.01;
+		if(j==0) v[i][j] = 0.00;
+		if(j==Y) v[i][j] = 0.001;
 	END_FOR
 
 	START_FOR_C
@@ -272,7 +272,7 @@ void gausseidel(double **x, double **b){
 	double h2 = H * H;
 	for(int k=0; k < T; k++){
 		START_FOR_C
-			x[i][j] = ((g_ref(x,i+1,j)+g_ref(x,i-1,j)+g_ref(x,i,j+1)+g_ref(x,i, j-1))-h2*b[i][j])/4;
+			x[i][j] = ((g_ref(x,i+1,j)+g_ref(x,i-1,j)+g_ref(x,i,j+1)+g_ref(x,i, j-1))-1.0*h2*b[i][j])/4;
 		END_FOR
 	}
 }
@@ -340,6 +340,7 @@ void solve(double **x, double **b){
 
 void compute_pressure(){
 	lin_solve(p,d,1,4);
+	//gausseidel(p, d);
 }
 
 void subtract_pressure(){
@@ -362,7 +363,7 @@ void initPostDisplay(){
 void compute_step(){
 	enforce_boundary();
 	scene();
-	vorticity_confinement();
+	//vorticity_confinement();
 	compute_force();
 	compute_advection();
 	compute_diffuse();

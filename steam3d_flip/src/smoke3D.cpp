@@ -84,19 +84,40 @@ static void scene(){
 	
 	// Vapor 
 	int w = N/2;
+
+	//circle
+	
 	for( int i=-w; i<=w; i++ ) {
 		for( int j=-w; j<=w; j++ ) {
 			if( hypot(i,j) < w ) {
 				for( int k=0; k<1; k++ ) {
-					double noise = perlin_noise.noise((double)i*1.0/(double)(N/2),(double)j*1.0/(double)(N/2),(double)frame*1.0/(double)(N/2)) * 1.0;
-					if(noise < 0) noise = 0.0;
-					//double noise = 1.0;	
-					v[(int)(N/2)+i][k][(int)(N/2)+j] = 4.0 + noise;
-					t[(int)(N / 2) + i][k][(int)(N / 2) + j] = T_AMB + 3.0;// *noise;
+					
+					double noise = 1.0;
+					
+					if (noise_flag) {
+						noise = perlin_noise.noise((double)i*1.0 / (double)(N / 2), (double)j*1.0 / (double)(N / 2), (double)frame*1.0 / (double)(N / 2)) * 1.0;
+						if (noise < 0) noise = 0.0;
+					}
+					v[(int)(N / 2) + i][k][(int)(N / 2) + j] = V_SUR * noise;
+					t[(int)(N / 2) + i][k][(int)(N / 2) + j] = T_AMB + T_SUR *noise;
 				}
 			}
 		}
 	}
+	
+
+	//square
+	/*
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			int k = 1;
+			//FLOAT noise = 1;
+			FLOAT noise = perlin_noise.noise((double)i*1.0 / (double)(N), (double)j*1.0 / (double)(N), (double)frame*1.0 / (double)(N)) * 1.0;
+			v[i][k][j] = 5 * noise;
+			t[i][k][j] = T_AMB + 3.0 * noise;
+		}
+	}
+	*/
 
 }
 
@@ -111,7 +132,7 @@ static void enforce_boundary() {
 	FOR_EVERY_Y_FLOW {
 		//if( j==0 || j==N ) u[1][i][j][k] = 0.0;
 		if (j == 0) u[1][i][j][k] = 0.0;
-		if (j == N) u[1][i][j][k] = 0.05;
+		if (j == N) u[1][i][j][k] = 0.01;
 	} END_FOR
 	
 	FOR_EVERY_Z_FLOW {
@@ -129,9 +150,9 @@ static void enforce_boundary() {
 	auto particle = particles.begin();
 	while (particle != particles.end()) {
 		if ((*particle)->y() == 0 ||
-			(*particle)->p[0] < 0.0 ||(*particle)->p[0] > M ||
-			(*particle)->p[1] < 0.0 || (*particle)->p[1] > M ||
-			(*particle)->p[2] < 0.0 || (*particle)->p[2] > M) {
+			(*particle)->p[0] <= 0.0 ||(*particle)->p[0] >= M ||
+			(*particle)->p[1] <= 0.0 || (*particle)->p[1] >= M ||
+			(*particle)->p[2] <= 0.0 || (*particle)->p[2] >= M) {
 			particle = particles.erase(particle);
 		}else {
 			++particle;
@@ -159,10 +180,13 @@ static void project() {
 	solver::solve( p, div, b, N );
 	
 	// Subtract Pressure Gradient
+
+	FLOAT density = F_DENS;
+
 	FOR_EVERY_CELL {
-		if( i>0 && i<N ) u[0][i][j][k] -= (p[i][j][k]-p[i-1][j][k])/h;
-		if( j>0 && j<N ) u[1][i][j][k] -= (p[i][j][k]-p[i][j-1][k])/h;
-		if( k>0 && k<N ) u[2][i][j][k] -= (p[i][j][k]-p[i][j][k-1])/h;
+		if( i>0 && i<N ) u[0][i][j][k] -= (p[i][j][k]-p[i-1][j][k])/h * (1.0 / density);
+		if( j>0 && j<N ) u[1][i][j][k] -= (p[i][j][k]-p[i][j-1][k])/h * (1.0 / density);
+		if( k>0 && k<N ) u[2][i][j][k] -= (p[i][j][k]-p[i][j][k-1])/h * (1.0 / density);
 	} END_FOR
 }
 
@@ -172,10 +196,10 @@ static void grid_advection() {
 }
 
 static FLOAT drag(FLOAT u_rel) {
-	FLOAT b = 1.2;
-	FLOAT a = 10;
+	FLOAT b = 1.3;
+	FLOAT a = 0.07;
 	FLOAT drag = -a * std::powf(std::abs(u_rel), b);
-	drag = std::signbit(u_rel) ? -drag : drag;
+	drag = std::signbit(u_rel) ? -drag : +drag;
 	return drag;
 }
 
@@ -183,9 +207,10 @@ static void particle_advection() {
 
 
 	OPENMP_FOR for (auto p : particles) {
-		FLOAT u_air = interp(u[0], N+1, N + 1, N, p->p[0], p->p[1], p->p[2]);
-		FLOAT v_air = interp(u[1], N, N + 1, N, p->p[0], p->p[1], p->p[2]);
-		FLOAT w_air = interp(u[2], N, N, N + 1, p->p[0], p->p[1], p->p[2]);
+		//printf("%f %f %f\n", p->p[0],p->p[1],p->p[2]);
+		FLOAT u_air = interp(u[0], N+1, N, N, N * p->p[0], N * p->p[1], N * p->p[2]);
+		FLOAT v_air = interp(u[1], N, N+1 , N, N * p->p[0], N * p->p[1], N * p->p[2]);
+		FLOAT w_air = interp(u[2], N, N, N + 1, N * p->p[0], N * p->p[1], N * p->p[2]);
 
 		FLOAT u_rel = p->u[0] - u_air;
 		FLOAT v_rel = p->u[1] - v_air;
@@ -195,14 +220,24 @@ static void particle_advection() {
 		FLOAT v_drag = drag(v_rel);
 		FLOAT w_drag = drag(w_rel);
 
-		p->u[0] += u_drag;
-		p->u[1] += v_drag - P_DENS * 0.1;
-		p->u[2] += w_drag;
+		//printf("%f %f %f\n", u_drag,v_drag,w_drag);	
+
+		p->u[0] += u_drag * 1.0 / P_DENS;
+		p->u[1] += v_drag * 1.0 / P_DENS -  0.001;
+		p->u[2] += w_drag * 1.0 / P_DENS;
 
 		//move particle
-		p->p[0] += p->u[0];
-		p->p[1] += p->u[1];
-		p->p[2] += p->u[2];
+		
+		p->p[0] += p->u[0] *DT;
+		p->p[1] += p->u[1] *DT;
+		p->p[2] += p->u[2] *DT;
+
+		//move particle (particle velocity equals air velocity)
+		/*
+		p->p[0] += u_air * DT;
+		p->p[1] += v_air * DT;
+		p->p[2] += w_air * DT;
+		*/
 	}
 
 }
@@ -212,8 +247,8 @@ void diffuse(){
 
 	static FLOAT ***out[2] = { alloc3D(N,N,N), alloc3D(N,N,N)};
 
-	FLOAT Dv = DT * 0.01;
-	FLOAT Dt = DT * 0.002;
+	FLOAT Dv = DT * 0.1;
+	FLOAT Dt = DT * 0.1;
 
 	FOR_EVERY_CELL {
 		out[0][i][j][k] = g_ref(v,i,j,k,N) + 
@@ -316,7 +351,7 @@ void compute_particle_dens() {
 		const FLOAT r = length(cp,particle->p);
 		const FLOAT h = cell_size;
 		FLOAT k = KernelPoly6(r, h) *(FLOAT)P_DENS;
-		rs[px][py][pz] += k * 0.00002;
+		rs[px][py][pz] += k * 0.00001;
 	}
 }
 
@@ -333,13 +368,16 @@ void phase_transition() {
 	if (j<1) continue;
 
 	//Saturation Vapor Content
-	FLOAT a = 13.0;
-	FLOAT b = 30.0;
-	FLOAT c = -2.3;
+	FLOAT a =-1.0;
+	FLOAT b = 10.0;
+	FLOAT c = 0.3;
 	FLOAT m = fmin(a * exp(-b / ((t[i][j][k]) + c)),v[i][j][k] + s[i][j][k]);
+	//FLOAT m = a * exp(-b / ((t[i][j][k]) + c));
+
+
 
 	//Phase transition
-	FLOAT r = 0.7;
+	FLOAT r = 0.9;
 	FLOAT ds = r * (v[i][j][k] - m);
 	FLOAT dv = 0.0;
 
@@ -391,14 +429,15 @@ void phase_transition() {
 	v[i][j][k] += dv;
 
 	//latent heat
-	t[i][j][k] += 0.5 * ds;
+	t[i][j][k] += 0.05 * ds;
 
 	auto particle = particles.begin();
+	
 	while (particle != particles.end()) {
 
 		//printf("dens%d x%d y%d\n", (*particle)->dens, (*particle)->x(),(*particle)->y() );
 
-		if ((*particle)->dens == 0.0) {
+		if ((*particle)->dens <= 0.0) {
 			particle = particles.erase(particle);
 		}
 		else {
@@ -421,9 +460,11 @@ void buoyancy() {
 
 	FOR_EVERY_CELL{
 
+	if (j<1) continue;
+
 	// Give Buoyancy 
-	FLOAT beta = 0.05;
-	FLOAT buoy = beta * (t[i][j][k] - at);
+	//FLOAT beta = 1.5;
+	FLOAT buoy = BUOY * (t[i][j][k] - at);
 	u[1][i][j][k] += buoy;
 
 	} END_FOR
@@ -441,7 +482,7 @@ void smoke3D::simulateStep() {
 	grid_advection();
 	particle_advection();
 	enforce_boundary();
-	render::render(s,/*SPHERE_R,*/N,frame);
+	render::render(rs,/*SPHERE_R,*/N,frame);
 	//smoke3D::exportDensity(s, N, frame);
 	printf("wrote frame %d %d\n", frame, particles.size() );
 	frame ++;

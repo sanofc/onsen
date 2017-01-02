@@ -24,17 +24,17 @@
 #include <GL/glut.h>
 #endif
 
-#define	DT					0.1			//Time Step
+#define	DT					0.01			//Time Step
 #define M					1.0			//Grid Size
-#define	N					32			//Cell Numbers for One Grid
-#define X					32			//Cell Numbers for X Direction
-#define Y					32			//Cell Numbers for Y Direction
+#define	N					64			//Cell Numbers for One Grid
+#define X					64			//Cell Numbers for X Direction
+#define Y					64			//Cell Numbers for Y Direction
 #define W					512			//Window Size
 #define T					100			//Iteration Numbers
 #define V					0.0001			//Viscocity
 #define A					10			//Ambient Temperature
-#define K					0.003		//Buoyancy Coefficient
-#define G					0.0005			//Gravity Coefficient
+#define K					0.03		//Buoyancy Coefficient
+#define G					0.02			//Gravity Coefficient
 
 #define VAPOR				0
 #define WATER				1
@@ -43,7 +43,8 @@
 using namespace std;
 
 static const double H = M/N;			//Cell Size
-static const double P_DENS = 0.001;
+static const double P_DENS = 0.01;		//Density in a particle
+static const double F_DENS = 3.0;			//Fluid Density
 
 #define START_FOR(X,Y)		for(int j=0;j<Y;j++){for(int i=0;i<X;i++){
 #define START_FOR_X			START_FOR(X+1,Y)
